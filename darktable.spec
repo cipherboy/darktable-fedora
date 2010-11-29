@@ -2,21 +2,21 @@
 %define with_gegl 0
 
 Name:		darktable
-Version:	0.6
-Release:	9%{?dist}
+Version:	0.7
+Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://darktable.sourceforge.net/index.shtml
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-Patch0:		darktable_desktop.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	pkgconfig >= 0.22
 BuildRequires:	intltool, gettext
 BuildRequires:	sqlite-devel
 BuildRequires:	libjpeg-devel, libpng-devel, libtiff-devel
+BuildRequires:	librsvg2-devel >= 2.26
 BuildRequires:	GConf2-devel, gtk2-devel, cairo-devel, libglade2-devel
 BuildRequires:	lcms-devel
 BuildRequires:	exiv2-devel
@@ -41,7 +41,6 @@ It also enables you to develop raw images and enhance them.
 
 %prep
 %setup -q
-%patch0 -p1 -b desktop.rej
 
 
 %build
@@ -102,6 +101,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Mon Nov 29 2010 Edouard Bourguignon <madko@linuxed.net> - 0.7-1
+- Upgrade to darktable 0.7
+
 * Mon Sep 20 2010 Edouard Bourguignon <madko@linuxed.net> - 0.6-9
 - Only use RPM_BUILD_ROOT
 - Remove duplicated doc
