@@ -19,7 +19,7 @@ BuildRequires:	libjpeg-devel, libpng-devel, libtiff-devel
 BuildRequires:	librsvg2-devel >= 2.26
 BuildRequires:	GConf2-devel, gtk2-devel, cairo-devel, libglade2-devel
 BuildRequires:	lcms-devel
-BuildRequires:	exiv2-devel
+BuildRequires:	exiv2-devel >= 0.21
 BuildRequires:	lensfun-devel
 BuildRequires:	GConf2
 BuildRequires:	OpenEXR-devel >= 1.6
@@ -104,7 +104,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
-* Mon Jan 03 2010 Edouard Bourguignon <madko@linuxed.net> - 0.7.1-3
+* Mon Jan 03 2011 Edouard Bourguignon <madko@linuxed.net> - 0.7.1-3
 - Change exiv2 headers to use the new umbrella header (#666887)
 
 * Sat Jan 01 2011 Rex Dieter <rdieter@fedoraproject.org> - 0.7.1-2
