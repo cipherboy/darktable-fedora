@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	0.7.1
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -32,6 +32,8 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	gegl-devel
 %endif
 
+Patch:	darktable-0.7-exiv_new_umbrella_header.patch
+
 %description
 Darktable is a virtual light-table and darkroom for photographers:
 it manages your digital negatives in a database and lets you view them
@@ -41,6 +43,7 @@ It also enables you to develop raw images and enhance them.
 
 %prep
 %setup -q
+%patch -p1 -b exiv_new_umbrella_header.rej
 
 
 %build
@@ -101,6 +104,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Mon Jan 03 2010 Edouard Bourguignon <madko@linuxed.net> - 0.7.1-3
+- Change exiv2 headers to use the new umbrella header (#666887)
+
 * Sat Jan 01 2011 Rex Dieter <rdieter@fedoraproject.org> - 0.7.1-2
 - rebuild (exiv2)
 
