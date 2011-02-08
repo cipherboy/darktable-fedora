@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	0.7.1
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -104,6 +104,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Tue Feb 08 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.7.1-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
+
 * Mon Jan 03 2011 Edouard Bourguignon <madko@linuxed.net> - 0.7.1-3
 - Change exiv2 headers to use the new umbrella header (#666887)
 
