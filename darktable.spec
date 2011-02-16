@@ -2,7 +2,7 @@
 %define with_gegl 0
 
 Name:		darktable
-Version:	0.7.1
+Version:	0.8
 Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
@@ -12,6 +12,7 @@ URL:		http://darktable.sourceforge.net/index.shtml
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
+BuildRequires:  cmake
 BuildRequires:	pkgconfig >= 0.22
 BuildRequires:	intltool, gettext
 BuildRequires:	sqlite-devel
@@ -19,6 +20,7 @@ BuildRequires:	libjpeg-devel, libpng-devel, libtiff-devel
 BuildRequires:	librsvg2-devel >= 2.26
 BuildRequires:	GConf2-devel, gtk2-devel, cairo-devel, libglade2-devel
 BuildRequires:	lcms-devel
+BuildRequires:  lcms2-devel
 BuildRequires:	exiv2-devel
 BuildRequires:	lensfun-devel
 BuildRequires:	GConf2
@@ -32,6 +34,7 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	gegl-devel
 %endif
 
+
 %description
 Darktable is a virtual light-table and darkroom for photographers:
 it manages your digital negatives in a database and lets you view them
@@ -44,18 +47,17 @@ It also enables you to develop raw images and enhance them.
 
 
 %build
-%configure	--disable-static \
-%if 0%{?with_gegl}
-		--enable-gegl
-%endif
-
-make %{?_smp_mflags}
+[ ! -d "buildFedora" ] && mkdir buildFedora
+cd buildFedora
+%cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} -DCMAKE_BUILD_TYPE=Release -DINSTALL_IOP_EXPERIMENTAL=Off -DINSTALL_IOP_LEGACY=Off .. && make %{?_smp_mflags}
 
 
 %install
 rm -rf $RPM_BUILD_ROOT
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
+cd buildFedora
 make install DESTDIR=$RPM_BUILD_ROOT
+install -D ../data/darktable.schemas $RPM_BUILD_ROOT/%{_sysconfdir}/gconf/schemas/darktable.schemas
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %find_lang %{name}
 desktop-file-validate $RPM_BUILD_ROOT/%{_datadir}/applications/darktable.desktop
@@ -88,9 +90,8 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %preun
 %gconf_schema_remove %{name} 
  
-%files -f %{name}.lang
+%files -f buildFedora/%{name}.lang 
 %defattr(-,root,root,-)
-%doc README AUTHORS LICENSE TRANSLATORS
 %{_bindir}/darktable
 %{_libdir}/darktable
 %{_datadir}/applications/darktable.desktop
@@ -101,6 +102,19 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Tue Feb 15 2011 Edouard Bourguignon <madko@linuxed.net> - 0.8-1
+- Upgrade to version 0.8
+- Rebuilt using cmake
+
+* Tue Feb 08 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.7.1-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
+
+* Mon Jan 03 2011 Edouard Bourguignon <madko@linuxed.net> - 0.7.1-3
+- Change exiv2 headers to use the new umbrella header (#666887)
+
+* Sat Jan 01 2011 Rex Dieter <rdieter@fedoraproject.org> - 0.7.1-2
+- rebuild (exiv2)
+
 * Tue Dec 14 2010 Edouard Bourguignon <madko@linuxed.net> - 0.7.1-1
 - Upgrade to version 0.7.1
 
