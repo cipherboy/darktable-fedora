@@ -3,13 +3,14 @@
 
 Name:		darktable
 Version:	0.8
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://darktable.sourceforge.net/index.shtml
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Patch0:		darktable-0.8-unused_variables.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -19,16 +20,17 @@ BuildRequires:	sqlite-devel
 BuildRequires:	libjpeg-devel, libpng-devel, libtiff-devel
 BuildRequires:	librsvg2-devel >= 2.26
 BuildRequires:	GConf2-devel, gtk2-devel, cairo-devel, libglade2-devel
-BuildRequires:	lcms-devel
-BuildRequires:  lcms2-devel
+BuildRequires:	lcms2-devel
 BuildRequires:	exiv2-devel
 BuildRequires:	lensfun-devel
 BuildRequires:	GConf2
 BuildRequires:	OpenEXR-devel >= 1.6
 BuildRequires:	libgphoto2-devel >= 2.4.5	
 BuildRequires:	libcurl-devel >= 7.18.0
+BuildRequires:	flickcurl-devel
 BuildRequires:	dbus-glib-devel >= 0.80 
 BuildRequires:	gnome-keyring-devel >= 2.28.0
+BuildRequires:	gnome-doc-utils, fop
 BuildRequires:	desktop-file-utils
 %if 0%{?with_gegl}
 BuildRequires:	gegl-devel
@@ -44,6 +46,7 @@ It also enables you to develop raw images and enhance them.
 
 %prep
 %setup -q
+%patch0 -p1 -b unused_variables.rej
 
 
 %build
@@ -102,6 +105,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Thu Feb 17 2011 Edouard Bourguignon <madko@linuxed.net> - 0.8-2
+- Add flickcurl support
+- Add patch to fix unused but set variables
+
 * Tue Feb 15 2011 Edouard Bourguignon <madko@linuxed.net> - 0.8-1
 - Upgrade to version 0.8
 - Rebuilt using cmake
