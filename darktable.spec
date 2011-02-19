@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	0.8
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -11,6 +11,7 @@ License:	GPLv3+
 URL:		http://darktable.sourceforge.net/index.shtml
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:		darktable-0.8-unused_variables.patch
+Patch1:		darktable-0.8-clean_up_set_but_unused_variables.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -47,6 +48,7 @@ It also enables you to develop raw images and enhance them.
 %prep
 %setup -q
 %patch0 -p1 -b unused_variables.rej
+%patch1 -p1 -b clean_up_set_but_unused_variables.rej
 
 
 %build
@@ -105,6 +107,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sat Feb 19 2011 Edouard Bourguignon <madko@linuxed.net> - 0.8-3
+- Clean up set but unused variables patch for GCC 4.6 (Karl Mikaelsson)
+
 * Thu Feb 17 2011 Edouard Bourguignon <madko@linuxed.net> - 0.8-2
 - Add flickcurl support
 - Add patch to fix unused but set variables
