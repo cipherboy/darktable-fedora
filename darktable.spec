@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	0.8
-Release:	3%{?dist}
+Release:	5%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -12,6 +12,7 @@ URL:		http://darktable.sourceforge.net/index.shtml
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:		darktable-0.8-unused_variables.patch
 Patch1:		darktable-0.8-clean_up_set_but_unused_variables.patch
+Patch2:		darktable-0.8-Remove-the-RELATIVE_PATH_FROM_BIN-variable.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -49,20 +50,29 @@ It also enables you to develop raw images and enhance them.
 %setup -q
 %patch0 -p1 -b unused_variables.rej
 %patch1 -p1 -b clean_up_set_but_unused_variables.rej
+%patch2 -p1 -b Remove-the-RELATIVE_PATH_FROM_BIN-variable.rej
 
 
 %build
-[ ! -d "buildFedora" ] && mkdir buildFedora
-cd buildFedora
-%cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} -DCMAKE_BUILD_TYPE=Release -DINSTALL_IOP_EXPERIMENTAL=Off -DINSTALL_IOP_LEGACY=Off .. && make %{?_smp_mflags}
+mkdir buildFedora
+pushd buildFedora
+%cmake \
+        -DCMAKE_LIBRARY_PATH:PATH=%{_libdir} \
+	-DCMAKE_SKIP_RPATH:BOOLEAN=ON \
+        -DDONT_INSTALL_GCONF_SCHEMAS:BOOLEAN=ON \
+        -DCMAKE_BUILD_TYPE:STRING=Release \
+	-DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
+	.. 
+make %{?_smp_mflags}
 
 
 %install
 rm -rf $RPM_BUILD_ROOT
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
-cd buildFedora
+pushd buildFedora
 make install DESTDIR=$RPM_BUILD_ROOT
-install -D ../data/darktable.schemas $RPM_BUILD_ROOT/%{_sysconfdir}/gconf/schemas/darktable.schemas
+popd
+install -D ./data/darktable.schemas $RPM_BUILD_ROOT/%{_sysconfdir}/gconf/schemas/darktable.schemas
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %find_lang %{name}
 desktop-file-validate $RPM_BUILD_ROOT/%{_datadir}/applications/darktable.desktop
@@ -95,18 +105,27 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %preun
 %gconf_schema_remove %{name} 
  
-%files -f buildFedora/%{name}.lang 
+%files -f %{name}.lang 
 %defattr(-,root,root,-)
+%doc doc/README doc/AUTHORS doc/LICENSE doc/TRANSLATORS
 %{_bindir}/darktable
 %{_libdir}/darktable
 %{_datadir}/applications/darktable.desktop
 %{_datadir}/darktable
 %{_datadir}/icons/hicolor/*/apps/darktable.*
 %{_datadir}/man/man1/darktable.1.gz
-%{_sysconfdir}/gconf/schemas/darktable.schemas
+%attr(644,root,root) %{_sysconfdir}/gconf/schemas/darktable.schemas
 
 
 %changelog
+* Wed Feb 23 2011 Edouard Bourguignon <madko@linuxed.net> - 0.8-5
+- Change build options
+- Change permission on gconf darktable.schemas
+- Add patch and cmake option to remove relative path (thanks to Karl Mikaelsson)
+
+* Mon Feb 19 2011 Edouard Bourguignon <madko@linuxed.net> - 0.8-4
+- Add missing doc files
+
 * Sat Feb 19 2011 Edouard Bourguignon <madko@linuxed.net> - 0.8-3
 - Clean up set but unused variables patch for GCC 4.6 (Karl Mikaelsson)
 
