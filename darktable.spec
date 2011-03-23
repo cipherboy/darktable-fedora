@@ -3,12 +3,12 @@
 
 Name:		darktable
 Version:	0.8
-Release:	5%{?dist}
+Release:	6%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
 License:	GPLv3+
-URL:		http://darktable.sourceforge.net/index.shtml
+URL:		http://darktable.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:		darktable-0.8-unused_variables.patch
 Patch1:		darktable-0.8-clean_up_set_but_unused_variables.patch
@@ -58,11 +58,15 @@ mkdir buildFedora
 pushd buildFedora
 %cmake \
         -DCMAKE_LIBRARY_PATH:PATH=%{_libdir} \
-	-DCMAKE_SKIP_RPATH:BOOLEAN=ON \
         -DDONT_INSTALL_GCONF_SCHEMAS:BOOLEAN=ON \
         -DCMAKE_BUILD_TYPE:STRING=Release \
 	-DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
+	-DCMAKE_SKIP_BUILD_RPATH:BOOLEAN=FALSE \
+	-DCMAKE_BUILD_WITH_INSTALL_RPATH:BOOLEAN=FALSE \
+	-DCMAKE_INSTALL_RPATH:STRING="" \
+	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOLEAN=FALSE \
 	.. 
+
 make %{?_smp_mflags}
 
 
@@ -92,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 update-desktop-database &> /dev/null ||:                                        
 touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
 
-%postun                                                                         
+%postun
 update-desktop-database &> /dev/null || :                                       
 if [ $1 -eq 0 ] ; then                                                          
     touch --no-create %{_datadir}/icons/hicolor &>/dev/null                     
@@ -118,6 +122,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Tue Mar 22 2011 Edouard Bourguignon <madko@linuxed.net> - 0.8-6
+- Keep rpath for internal libs 
+
 * Wed Feb 23 2011 Edouard Bourguignon <madko@linuxed.net> - 0.8-5
 - Change build options
 - Change permission on gconf darktable.schemas
