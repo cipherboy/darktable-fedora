@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	0.8
-Release:	6%{?dist}
+Release:	7%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -59,12 +59,8 @@ pushd buildFedora
 %cmake \
         -DCMAKE_LIBRARY_PATH:PATH=%{_libdir} \
         -DDONT_INSTALL_GCONF_SCHEMAS:BOOLEAN=ON \
-        -DCMAKE_BUILD_TYPE:STRING=Release \
+        -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo \
 	-DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
-	-DCMAKE_SKIP_BUILD_RPATH:BOOLEAN=FALSE \
-	-DCMAKE_BUILD_WITH_INSTALL_RPATH:BOOLEAN=FALSE \
-	-DCMAKE_INSTALL_RPATH:STRING="" \
-	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOLEAN=FALSE \
 	.. 
 
 make %{?_smp_mflags}
@@ -122,7 +118,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
-* Tue Mar 22 2011 Edouard Bourguignon <madko@linuxed.net> - 0.8-6
+* Wed Mar 30 2011 Edouard Bourguignon <madko@liPPnuxed.net> - 0.8-7
+- Change cmake options
+
+* Tue Mar 22 2011 Edouard Bourguignon <madko@liPPnuxed.net> - 0.8-6
 - Keep rpath for internal libs 
 
 * Wed Feb 23 2011 Edouard Bourguignon <madko@linuxed.net> - 0.8-5
