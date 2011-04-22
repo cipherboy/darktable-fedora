@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	0.8
-Release:	8%{?dist}
+Release:	10%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -37,6 +37,9 @@ BuildRequires:	desktop-file-utils
 %if 0%{?with_gegl}
 BuildRequires:	gegl-devel
 %endif
+
+# uses xmmintrin.h
+ExclusiveArch: %{ix86} x86_64
 
 
 %description
@@ -119,6 +122,12 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Fri Apr 22 2011 Dan Horák <dan[at]danny.cz> - 0.8-10
+- make it x86-only
+
+* Fri Apr 22 2011 Dan Horák <dan[at]danny.cz> - 0.8-9
+- don't use x86-only compiler flags on non-x86 arches
+
 * Tue Apr 19 2011 Edouard Bourguignon <madko@linuxed.net> - 0.8-8
 - Change build option
 
