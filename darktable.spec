@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	0.8
-Release:	9%{?dist}
+Release:	8%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -13,7 +13,6 @@ Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:		darktable-0.8-unused_variables.patch
 Patch1:		darktable-0.8-clean_up_set_but_unused_variables.patch
 Patch2:		darktable-0.8-Remove-the-RELATIVE_PATH_FROM_BIN-variable.patch
-Patch3:		darktable-0.8-flags.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -52,9 +51,7 @@ It also enables you to develop raw images and enhance them.
 %patch0 -p1 -b unused_variables.rej
 %patch1 -p1 -b clean_up_set_but_unused_variables.rej
 %patch2 -p1 -b Remove-the-RELATIVE_PATH_FROM_BIN-variable.rej
-%ifnarch %{ix86} x86_64
-%patch3 -p1 -b .flags
-%endif
+
 
 %build
 mkdir buildFedora
@@ -122,9 +119,6 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
-* Fri Apr 22 2011 Dan Horák <dan[at]danny.cz> - 0.8-9
-- don't use x86-only compiler flags on non-x86 arches
-
 * Tue Apr 19 2011 Edouard Bourguignon <madko@linuxed.net> - 0.8-8
 - Change build option
 
