@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	0.8
-Release:	10%{?dist}
+Release:	11%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -13,6 +13,8 @@ Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:		darktable-0.8-unused_variables.patch
 Patch1:		darktable-0.8-clean_up_set_but_unused_variables.patch
 Patch2:		darktable-0.8-Remove-the-RELATIVE_PATH_FROM_BIN-variable.patch
+Patch3:		darktable-0.8-default_generic_optimizations.patch
+Patch4:		darktable-0.8-binary_package_build.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -54,6 +56,8 @@ It also enables you to develop raw images and enhance them.
 %patch0 -p1 -b unused_variables.rej
 %patch1 -p1 -b clean_up_set_but_unused_variables.rej
 %patch2 -p1 -b Remove-the-RELATIVE_PATH_FROM_BIN-variable.rej
+%patch3 -p1 -b default_generic_optimizations.rej
+%patch4 -p1 -b binary_package_build.rej
 
 
 %build
@@ -122,6 +126,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Mon May 23 2011 Edouard Bourguignon <madko@linuxed.net> - 0.8-11
+- Add a patch for BINARY_PACKAGE_BUILD option (preventing march=native)
+
 * Fri Apr 22 2011 Dan Horák <dan[at]danny.cz> - 0.8-10
 - make it x86-only
 
