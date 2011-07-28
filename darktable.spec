@@ -2,7 +2,7 @@
 %define with_gegl 0
 
 Name:		darktable
-Version:	0.9
+Version:	0.9.1
 Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
@@ -10,11 +10,6 @@ Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://darktable.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-#Patch0:		darktable-0.8-unused_variables.patch
-#Patch1:		darktable-0.8-clean_up_set_but_unused_variables.patch
-#Patch2:		darktable-0.8-Remove-the-RELATIVE_PATH_FROM_BIN-variable.patch
-#Patch3:		darktable-0.8-default_generic_optimizations.patch
-#Patch4:		darktable-0.8-binary_package_build.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -53,11 +48,6 @@ It also enables you to develop raw images and enhance them.
 
 %prep
 %setup -q
-#%patch0 -p1 -b unused_variables.rej
-#%patch1 -p1 -b clean_up_set_but_unused_variables.rej
-#%patch2 -p1 -b Remove-the-RELATIVE_PATH_FROM_BIN-variable.rej
-#%patch3 -p1 -b default_generic_optimizations.rej
-#%patch4 -p1 -b binary_package_build.rej
 
 
 %build
@@ -128,6 +118,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Thu Jul 28 2011 Edouard Bourguignon <madko@linuxed.net> - 0.9.1-1
+- Upgrade to 0.9.1
+- Remove some old patches
+
 * Sat Jul  2 2011 Edouard Bourguignon <madko@linuxed.net> - 0.9-1
 - Upgrade to 0.9
 
