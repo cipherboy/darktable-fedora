@@ -2,8 +2,8 @@
 %define with_gegl 0
 
 Name:		darktable
-Version:	0.9.2
-Release:	2%{?dist}
+Version:	0.9.3
+Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -118,6 +118,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Mon Nov  7 2011 Edouard Bourguignon <madko@linuxed.net> - 0.9.3-1
+- Upgrade to 0.9.3
+
 * Fri Oct 14 2011 Rex Dieter <rdieter@fedoraproject.org> - 0.9.2-2
 - rebuild (exiv2)
 
