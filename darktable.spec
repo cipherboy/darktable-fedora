@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	0.9.3
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -31,6 +31,7 @@ BuildRequires:	dbus-glib-devel >= 0.80
 BuildRequires:	gnome-keyring-devel >= 2.28.0
 BuildRequires:	gnome-doc-utils, fop
 BuildRequires:	desktop-file-utils
+BuildRequires:	SDL-devel
 %if 0%{?with_gegl}
 BuildRequires:	gegl-devel
 %endif
@@ -109,6 +110,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_bindir}/darktable
 %{_bindir}/darktable-cltest
 %{_bindir}/darktable-faster
+%{_bindir}/darktable-viewer
 %{_libdir}/darktable
 %{_datadir}/applications/darktable.desktop
 %{_datadir}/darktable
@@ -118,6 +120,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Mon Dec  5 2011 Edouard Bourguignon <madko@linuxed.net> - 0.9.3-2
+- Adding darktable-viewer/slideshow (bug #752788)
+
 * Mon Nov  7 2011 Edouard Bourguignon <madko@linuxed.net> - 0.9.3-1
 - Upgrade to 0.9.3
 
