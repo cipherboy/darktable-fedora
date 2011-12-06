@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	0.9.3
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -120,6 +120,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Tue Dec 06 2011 Adam Jackson <ajax@redhat.com> - 0.9.3-3
+- Rebuild for new libpng
+
 * Mon Dec  5 2011 Edouard Bourguignon <madko@linuxed.net> - 0.9.3-2
 - Adding darktable-viewer/slideshow (bug #752788)
 
