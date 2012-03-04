@@ -1,15 +1,16 @@
 #without --enable_gegl "until gegl is fast enough" as developers tell
 %define with_gegl 0
+%define prerelease rc1
 
 Name:		darktable
-Version:	0.9.3
-Release:	5%{?dist}
+Version:	1.0	
+Release:	0.1.rc1%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://darktable.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}~%{prerelease}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -48,7 +49,7 @@ It also enables you to develop raw images and enhance them.
 
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}~%{prerelease}
 
 
 %build
@@ -109,7 +110,6 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %doc doc/README doc/AUTHORS doc/LICENSE doc/TRANSLATORS
 %{_bindir}/darktable
 %{_bindir}/darktable-cltest
-%{_bindir}/darktable-faster
 %{_bindir}/darktable-viewer
 %{_libdir}/darktable
 %{_datadir}/applications/darktable.desktop
@@ -120,17 +120,11 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
-* Tue Feb 28 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.9.3-5
-- Rebuilt for c++ ABI breakage
-
-* Fri Jan 13 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.9.3-4
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
-
-* Tue Dec 06 2011 Adam Jackson <ajax@redhat.com> - 0.9.3-3
-- Rebuild for new libpng
+* Sun Mar  4 2012 Edouard Bourguignon <madko@linuxed.net> - 1.0-0.1.rc1
+- Darktable 1.0 RC1
 
 * Mon Dec  5 2011 Edouard Bourguignon <madko@linuxed.net> - 0.9.3-2
-- Adding darktable-viewer/slideshow (bug #752788)
+- Add SDL-devel for darktable-viewer
 
 * Mon Nov  7 2011 Edouard Bourguignon <madko@linuxed.net> - 0.9.3-1
 - Upgrade to 0.9.3
