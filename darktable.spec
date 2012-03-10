@@ -1,16 +1,17 @@
 #without --enable_gegl "until gegl is fast enough" as developers tell
 %define with_gegl 0
-%define prerelease rc1
+%define prerelease rc2
 
 Name:		darktable
 Version:	1.0	
-Release:	0.1.rc1%{?dist}
+Release:	0.1.%{prerelease}%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://darktable.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}~%{prerelease}.tar.gz
+Patch0:		darktable-1.0~rc1_schemas.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -50,6 +51,7 @@ It also enables you to develop raw images and enhance them.
 
 %prep
 %setup -q -n %{name}-%{version}~%{prerelease}
+%patch0 -b schemas.rej
 
 
 %build
@@ -120,6 +122,12 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sat Mar 10 2012 Edouard Bourguignon <madko@linuxed.net> - 1.0-0.1.rc2
+- Upgrade to rc2
+
+* Wed Mar  7 2012 Edouard Bourguignon <madko@linuxed.net> - 1.0-0.2.rc1
+- Correct invalid type in darktable gconf schemas
+
 * Sun Mar  4 2012 Edouard Bourguignon <madko@linuxed.net> - 1.0-0.1.rc1
 - Darktable 1.0 RC1
 
