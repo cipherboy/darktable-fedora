@@ -4,13 +4,14 @@
 
 Name:		darktable
 Version:	1.0	
-Release:	0.2.%{prerelease}%{?dist}
+Release:	0.3.%{prerelease}%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://darktable.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}~%{prerelease}.tar.gz
+Patch0:		darktable_uninitialised-variables.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -50,7 +51,7 @@ It also enables you to develop raw images and enhance them.
 
 %prep
 %setup -q -n %{name}-%{version}~%{prerelease}
-
+%patch0 -p1
 
 %build
 mkdir buildFedora
@@ -113,6 +114,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sat Mar 10 2012 Edouard Bourguignon <madko@linuxed.net> - 1.0-0.3.rc2
+- Patch for uninitialised variables
+
 * Sat Mar 10 2012 Edouard Bourguignon <madko@linuxed.net> - 1.0-0.2.rc2
 - Remove useless darktable gconf schemas
 
