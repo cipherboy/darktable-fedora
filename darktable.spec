@@ -4,14 +4,13 @@
 
 Name:		darktable
 Version:	1.0	
-Release:	0.1.%{prerelease}%{?dist}
+Release:	0.2.%{prerelease}%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://darktable.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}~%{prerelease}.tar.gz
-Patch0:		darktable-1.0~rc1_schemas.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -51,7 +50,6 @@ It also enables you to develop raw images and enhance them.
 
 %prep
 %setup -q -n %{name}-%{version}~%{prerelease}
-%patch0 -b schemas.rej
 
 
 %build
@@ -74,10 +72,8 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 pushd buildFedora
 make install DESTDIR=$RPM_BUILD_ROOT
 popd
-install -D ./data/darktable.schemas $RPM_BUILD_ROOT/%{_sysconfdir}/gconf/schemas/darktable.schemas
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %find_lang %{name}
-desktop-file-validate $RPM_BUILD_ROOT/%{_datadir}/applications/darktable.desktop
 rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/darktable
 
 
@@ -86,12 +82,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %pre
-%gconf_schema_prepare %{name} 
+%gconf_schema_remove %{name} || : 
 
 %post
-%gconf_schema_upgrade %{name} 
-
-update-desktop-database &> /dev/null ||:                                        
 touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
 
 %postun
@@ -105,7 +98,6 @@ fi
 gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 %preun
-%gconf_schema_remove %{name} 
  
 %files -f %{name}.lang 
 %defattr(-,root,root,-)
@@ -118,10 +110,12 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/darktable
 %{_datadir}/icons/hicolor/*/apps/darktable.*
 %{_datadir}/man/man1/darktable.1.gz
-%attr(644,root,root) %{_sysconfdir}/gconf/schemas/darktable.schemas
 
 
 %changelog
+* Sat Mar 10 2012 Edouard Bourguignon <madko@linuxed.net> - 1.0-0.2.rc2
+- Remove useless darktable gconf schemas
+
 * Sat Mar 10 2012 Edouard Bourguignon <madko@linuxed.net> - 1.0-0.1.rc2
 - Upgrade to rc2
 
