@@ -4,7 +4,7 @@
 
 Name:		darktable
 Version:	1.0	
-Release:	0.3.%{prerelease}%{?dist}
+Release:	0.4.%{prerelease}%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -81,9 +81,7 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/darktable
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-
 %pre
-%gconf_schema_remove %{name} || : 
 
 %post
 touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
@@ -114,6 +112,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sun Mar 11 2012 Edouard Bourguignon <madko@linuxed.net> - 1.0-0.4.rc2
+- Remove pre script
+
 * Sat Mar 10 2012 Edouard Bourguignon <madko@linuxed.net> - 1.0-0.3.rc2
 - Patch for uninitialised variables
 
