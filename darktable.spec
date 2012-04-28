@@ -2,7 +2,7 @@
 %define with_gegl 0
 
 Name:		darktable
-Version:	1.0	
+Version:	1.0.1	
 Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
@@ -109,6 +109,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sat Apr 28 2012 Edouard Bourguignon <madko@linuxed.net> - 1.0.1-1
+- Upgrade to 1.0.1
+
 * Wed Mar 15 2012 Edouard Bourguignon <madko@linuxed.net> - 1.0-1
 - Upgrade to stable 1.0
 
