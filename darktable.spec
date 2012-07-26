@@ -2,7 +2,7 @@
 %define with_gegl 0
 
 Name:		darktable
-Version:	1.0.4
+Version:	1.0.5
 Release:	3%{?dist}
 Summary:	Utility to organize and develop raw images
 
@@ -109,6 +109,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Thu Jul 26 2012 Edouard Bourguignon <madko@linuxed.net> - 1.0.5-1
+- Upgrade to 1.0.5
+
 * Wed Jul 18 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.4-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
