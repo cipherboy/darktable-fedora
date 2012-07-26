@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	1.0.5
-Release:	3%{?dist}
+Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
