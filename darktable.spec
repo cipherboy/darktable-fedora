@@ -2,14 +2,14 @@
 %define with_gegl 0
 
 Name:		darktable
-Version:	1.0.5
-Release:	1%{?dist}
+Version:	1.1
+Release:	0.1.rc1%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://darktable.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}~rc1.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -48,7 +48,7 @@ It also enables you to develop raw images and enhance them.
 
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n %{name}-%{version}~rc1
 
 %build
 mkdir buildFedora
@@ -99,6 +99,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %defattr(-,root,root,-)
 %doc doc/README doc/AUTHORS doc/LICENSE doc/TRANSLATORS
 %{_bindir}/darktable
+%{_bindir}/darktable-cli
 %{_bindir}/darktable-cltest
 %{_bindir}/darktable-viewer
 %{_libdir}/darktable
@@ -109,6 +110,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Wed Oct 31 2012 Edouard Bourguignon <madko@linuxed.net> - 1.1-0.1.rc1
+- Upgrade to 1.1~rc1
+
 * Thu Jul 26 2012 Edouard Bourguignon <madko@linuxed.net> - 1.0.5-1
 - Upgrade to 1.0.5
 
