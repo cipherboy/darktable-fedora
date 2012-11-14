@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	1.1
-Release:	0.1.rc1%{?dist}
+Release:	0.1.rc2%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -110,6 +110,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Wed Nov 14 2012 Edouard Bourguignon <madko@linuxed.net> - 1.1-0.1.rc2
+- Upgrade to 1.1~rc2
+
 * Wed Oct 31 2012 Edouard Bourguignon <madko@linuxed.net> - 1.1-0.1.rc1
 - Upgrade to 1.1~rc1
 
