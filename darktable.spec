@@ -1,9 +1,10 @@
 #without --enable_gegl "until gegl is fast enough" as developers tell
 %define with_gegl 0
+%define rc rc2
 
 Name:		darktable
 Version:	1.1
-Release:	0.1.rc2%{?dist}
+Release:	0.1.%{rc}%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -48,7 +49,7 @@ It also enables you to develop raw images and enhance them.
 
 
 %prep
-%setup -q -n %{name}-%{version}~rc1
+%setup -q -n %{name}-%{version}~%{rc}
 
 %build
 mkdir buildFedora
