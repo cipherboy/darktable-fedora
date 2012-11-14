@@ -10,7 +10,7 @@ Summary:	Utility to organize and develop raw images
 Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://darktable.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}~rc1.tar.gz
+Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}~%{relc}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
