@@ -1,16 +1,15 @@
 #without --enable_gegl "until gegl is fast enough" as developers tell
 %define with_gegl 0
-%define relc rc2
 
 Name:		darktable
 Version:	1.1
-Release:	0.1.%{relc}%{?dist}
+Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://darktable.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}~%{relc}.tar.gz
+Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -49,7 +48,7 @@ It also enables you to develop raw images and enhance them.
 
 
 %prep
-%setup -q -n %{name}-%{version}~%{relc}
+%setup -q -n %{name}-%{version}
 
 %build
 mkdir buildFedora
@@ -111,6 +110,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sat Nov 24 2012 Edouard Bourguignon <madko@linuxed.net> - 1.1-1
+- Upgrade to 1.1
+
 * Wed Nov 14 2012 Edouard Bourguignon <madko@linuxed.net> - 1.1-0.1.rc2
 - Upgrade to 1.1~rc2
 
