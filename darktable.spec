@@ -2,7 +2,7 @@
 %define with_gegl 0
 
 Name:		darktable
-Version:	1.1
+Version:	1.1.1
 Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
@@ -28,7 +28,7 @@ BuildRequires:	libgphoto2-devel >= 2.4.5
 BuildRequires:	libcurl-devel >= 7.18.0
 BuildRequires:	flickcurl-devel
 BuildRequires:	dbus-glib-devel >= 0.80 
-BuildRequires:	gnome-keyring-devel >= 2.28.0
+BuildRequires:	libgnome-keyring-devel >= 2.28.0
 BuildRequires:	gnome-doc-utils, fop
 BuildRequires:	desktop-file-utils
 BuildRequires:	SDL-devel
@@ -56,7 +56,8 @@ pushd buildFedora
 %cmake \
         -DCMAKE_LIBRARY_PATH:PATH=%{_libdir} \
         -DDONT_INSTALL_GCONF_SCHEMAS:BOOLEAN=ON \
-        -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo \
+        -DUSE_GEO:BOOLEAN=ON \
+        -DCMAKE_BUILD_TYPE:STRING=Release \
 	-DBINARY_PACKAGE_BUILD=1 \
 	-DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
 	.. 
@@ -110,6 +111,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Wed Nov 28 2012 Edouard Bourguignon <madko@linuxed.net> - 1.1.1-1
+- Upgrade to 1.1.1 
+
 * Sat Nov 24 2012 Edouard Bourguignon <madko@linuxed.net> - 1.1-1
 - Upgrade to 1.1
 
