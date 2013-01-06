@@ -112,7 +112,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
-* Sun Jan  6 2012 Edouard Bourguignon <madko@linuxed.net> - 1.1.1-2
+* Sun Jan  6 2013 Edouard Bourguignon <madko@linuxed.net> - 1.1.1-2
 - Add map mode
 
 * Wed Nov 28 2012 Edouard Bourguignon <madko@linuxed.net> - 1.1.1-1
