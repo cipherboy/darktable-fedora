@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	1.1.1
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -32,6 +32,7 @@ BuildRequires:	libgnome-keyring-devel >= 2.28.0
 BuildRequires:	gnome-doc-utils, fop
 BuildRequires:	desktop-file-utils
 BuildRequires:	SDL-devel
+BuildRequires:	libsoup-devel	
 %if 0%{?with_gegl}
 BuildRequires:	gegl-devel
 %endif
@@ -111,6 +112,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sun Jan  6 2012 Edouard Bourguignon <madko@linuxed.net> - 1.1.1-2
+- Add map mode
+
 * Wed Nov 28 2012 Edouard Bourguignon <madko@linuxed.net> - 1.1.1-1
 - Upgrade to 1.1.1 
 
