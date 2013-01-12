@@ -2,8 +2,8 @@
 %define with_gegl 0
 
 Name:		darktable
-Version:	1.1.1
-Release:	2%{?dist}
+Version:	1.1.2
+Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -112,6 +112,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sat Jan 12 2013 Edouard Bourguignon <madko@linuxed.net> - 1.1.2-1
+- Upgrade to 1.1.2
+
 * Sun Jan  6 2013 Edouard Bourguignon <madko@linuxed.net> - 1.1.1-2
 - Add map mode
 
