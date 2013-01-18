@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	1.1.2
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -112,6 +112,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Fri Jan 18 2013 Adam Tkac <atkac redhat com> - 1.1.2-2
+- rebuild due to "jpeg8-ABI" feature drop
+
 * Sat Jan 12 2013 Edouard Bourguignon <madko@linuxed.net> - 1.1.2-1
 - Upgrade to 1.1.2
 
