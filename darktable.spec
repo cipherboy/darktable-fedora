@@ -37,6 +37,8 @@ BuildRequires:	libsoup-devel
 BuildRequires:	gegl-devel
 %endif
 
+Requires:	gtk2-engines
+
 # uses xmmintrin.h
 ExclusiveArch: %{ix86} x86_64
 
@@ -112,8 +114,8 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
-* Fri Jan 18 2013 Adam Tkac <atkac redhat com> - 1.1.2-2
-- rebuild due to "jpeg8-ABI" feature drop
+* Mon Jan 21 2013 Edouard Bourguignon <madko@linuxed.net> - 1.1.2-2
+- Add missing gtk2-engine dependancy (bug #902288)
 
 * Sat Jan 12 2013 Edouard Bourguignon <madko@linuxed.net> - 1.1.2-1
 - Upgrade to 1.1.2
