@@ -1,15 +1,18 @@
 #without --enable_gegl "until gegl is fast enough" as developers tell
 %define with_gegl 0
 
+%define checkout 20130201gitge1f2980
+%define realname darktable-1.1.2+26~ge1f2980
+
 Name:		darktable
-Version:	1.1.2
-Release:	2%{?dist}
+Version:	1.1.3
+Release:	0.1.%{checkout}%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://darktable.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{checkout}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -51,7 +54,8 @@ It also enables you to develop raw images and enhance them.
 
 
 %prep
-%setup -q -n %{name}-%{version}
+#%setup -q -n %{name}-%{version}
+%setup -q -n %{realname} 
 
 %build
 mkdir buildFedora
@@ -114,6 +118,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Fri Feb  1 2013 Edouard Bourguignon <madko@linuxed.net> - 1.1.2+26~ge1f2980
+- Pre 1.1.3
+
 * Mon Jan 21 2013 Edouard Bourguignon <madko@linuxed.net> - 1.1.2-2
 - Add missing gtk2-engine dependancy (bug #902288)
 
