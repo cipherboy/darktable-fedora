@@ -118,7 +118,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
-* Fri Feb  1 2013 Edouard Bourguignon <madko@linuxed.net> - 1.1.2+26~ge1f2980
+* Fri Feb  1 2013 Edouard Bourguignon <madko@linuxed.net> - 1.1.3-0.1.20130201gitge1f2980
 - Pre 1.1.3
 
 * Mon Jan 21 2013 Edouard Bourguignon <madko@linuxed.net> - 1.1.2-2
