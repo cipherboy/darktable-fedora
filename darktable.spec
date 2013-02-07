@@ -13,6 +13,7 @@ Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://darktable.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{checkout}.tar.gz
+Patch0:		0001-import-rawspeed-r513-fedora-19-libjpeg-workaround.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -56,6 +57,7 @@ It also enables you to develop raw images and enhance them.
 %prep
 #%setup -q -n %{name}-%{version}
 %setup -q -n %{realname} 
+%patch0 -p1 -b libjpeg.rej
 
 %build
 mkdir buildFedora
