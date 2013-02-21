@@ -159,7 +159,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 * Sat Apr 28 2012 Edouard Bourguignon <madko@linuxed.net> - 1.0.1-1
 - Upgrade to 1.0.1
 
-* Wed Mar 15 2012 Edouard Bourguignon <madko@linuxed.net> - 1.0-1
+* Thu Mar 15 2012 Edouard Bourguignon <madko@linuxed.net> - 1.0-1
 - Upgrade to stable 1.0
 
 * Sun Mar 11 2012 Edouard Bourguignon <madko@linuxed.net> - 1.0-0.4.rc2
@@ -225,7 +225,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 - Change permission on gconf darktable.schemas
 - Add patch and cmake option to remove relative path (thanks to Karl Mikaelsson)
 
-* Mon Feb 19 2011 Edouard Bourguignon <madko@linuxed.net> - 0.8-4
+* Sat Feb 19 2011 Edouard Bourguignon <madko@linuxed.net> - 0.8-4
 - Add missing doc files
 
 * Sat Feb 19 2011 Edouard Bourguignon <madko@linuxed.net> - 0.8-3
@@ -297,5 +297,5 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 - Use devel packages for building
 - Correct URL for Source0
 
-* Thu Feb 02 2010 İbrahim Eser <ibrahimeser@gmx.com.tr> - 0.4-1
+* Tue Feb 02 2010 İbrahim Eser <ibrahimeser@gmx.com.tr> - 0.4-1
 - Initial package.
