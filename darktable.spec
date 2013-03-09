@@ -33,6 +33,7 @@ BuildRequires:	gnome-doc-utils, fop
 BuildRequires:	desktop-file-utils
 BuildRequires:	SDL-devel
 BuildRequires:	libsoup-devel	
+BuildRequires:	json-glib-devel
 %if 0%{?with_gegl}
 BuildRequires:	gegl-devel
 %endif
@@ -114,11 +115,11 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
-* Sun Mar 10 2013 Rex Dieter <rdieter@fedoraproject.org> 1.1.4-1
-- Upgrade to 1.1.4 (#913847, #919811)
+* Sun Mar 10 2013 Edouard Bourguignon <madko@linuxed.net> - 1.1.4-1
+- Upgrade to 1.1.4
 
-* Sun Mar 10 2013 Rex Dieter <rdieter@fedoraproject.org> - 1.1.3-2
-- rebuild (OpenEXR)
+* Fri Feb 22 2013 Edouard Bourguignon <madko@linuxed.net> - 1.1.3-2
+- Add some missing dependancies
 
 * Mon Feb 11 2013 Edouard Bourguignon <madko@linuxed.net> - 1.1.3-1
 - Upgrade to 1.1.3
