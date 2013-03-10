@@ -2,14 +2,14 @@
 %define with_gegl 0
 
 Name:		darktable
-Version:	1.1.3
-Release:	2%{?dist}
+Version:	1.1.4
+Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://darktable.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.xz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -114,6 +114,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sun Mar 10 2013 Rex Dieter <rdieter@fedoraproject.org> 1.1.4-1
+- Upgrade to 1.1.4 (#913847, #919811)
+
 * Sun Mar 10 2013 Rex Dieter <rdieter@fedoraproject.org> - 1.1.3-2
 - rebuild (OpenEXR)
 
