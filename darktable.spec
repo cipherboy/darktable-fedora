@@ -53,7 +53,7 @@ It also enables you to develop raw images and enhance them.
 
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n %{name}-%{version}~%{releasecandidate}
 
 %build
 mkdir buildFedora
