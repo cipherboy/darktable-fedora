@@ -1,4 +1,4 @@
-%define releasecandidate rc1
+%define releasecandidate rc2
 #without --enable_gegl "until gegl is fast enough" as developers tell
 %define with_gegl 0
 
@@ -116,7 +116,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
-* Sat Mar 23 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2-0.1.rc2
+* Fri Mar 29 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2-0.1.rc2
+- Upgrade to 1.2~rc2
+
+* Sat Mar 23 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2-0.1.rc1
 - Upgrade to 1.2~rc1
 
 * Sun Mar 10 2013 Edouard Bourguignon <madko@linuxed.net> - 1.1.4-1
