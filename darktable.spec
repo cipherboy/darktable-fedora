@@ -1,16 +1,15 @@
-%define releasecandidate rc2
 #without --enable_gegl "until gegl is fast enough" as developers tell
 %define with_gegl 0
 
 Name:		darktable
 Version:	1.2
-Release:	0.1.%{releasecandidate}%{?dist}
+Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://darktable.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}~%{releasecandidate}.tar.xz
+Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.xz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -53,7 +52,7 @@ It also enables you to develop raw images and enhance them.
 
 
 %prep
-%setup -q -n %{name}-%{version}~%{releasecandidate}
+%setup -q -n %{name}-%{version}
 
 %build
 mkdir buildFedora
@@ -116,11 +115,11 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
-* Fri Mar 29 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2-0.1.rc2
-- Upgrade to 1.2~rc2
+* Sat Apr  6 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2-1
+- Upgrade to 1.2
 
-* Sat Mar 23 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2-0.1.rc1
-- Upgrade to 1.2~rc1
+* Sun Mar 10 2013 Edouard Bourguignon <madko@linuxed.net> - 1.1.4-2
+- Rebuild
 
 * Sun Mar 10 2013 Edouard Bourguignon <madko@linuxed.net> - 1.1.4-1
 - Upgrade to 1.1.4
