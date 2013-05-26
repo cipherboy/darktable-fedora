@@ -2,7 +2,7 @@
 %define with_gegl 0
 
 Name:		darktable
-Version:	1.2
+Version:	1.2.1
 Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
@@ -67,6 +67,9 @@ pushd buildFedora
 	.. 
 
 make %{?_smp_mflags}
+popd
+pushd tools/noise
+make %{?_smp_mflags}
 
 
 %install
@@ -78,6 +81,8 @@ popd
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %find_lang %{name}
 rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/darktable
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/darktable/tools/noise
+cp tools/noise/* $RPM_BUILD_ROOT%{_datadir}/darktable/tools/noise/
 
 
 %clean
@@ -115,6 +120,12 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sun May 26 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2.1-1
+- Upgrade to 1.2.1
+
+* Thu May  2 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2-2
+- Add profiling sensor and photon noise tools
+
 * Sat Apr  6 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2-1
 - Upgrade to 1.2
 
