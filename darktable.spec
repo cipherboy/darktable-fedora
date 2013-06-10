@@ -3,13 +3,14 @@
 
 Name:		darktable
 Version:	1.2.1
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://darktable.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.xz
+Patch0:		darktable-broken_full_color_images.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -37,6 +38,8 @@ BuildRequires:	json-glib-devel
 %if 0%{?with_gegl}
 BuildRequires:	gegl-devel
 %endif
+BuildRequires:	LibRaw-devel
+BuildRequires:	colord-devel
 
 Requires:	gtk2-engines
 
@@ -53,6 +56,7 @@ It also enables you to develop raw images and enhance them.
 
 %prep
 %setup -q -n %{name}-%{version}
+%patch0 -p1 -b broken_full_color_images.rej
 
 %build
 mkdir buildFedora
@@ -61,6 +65,7 @@ pushd buildFedora
         -DCMAKE_LIBRARY_PATH:PATH=%{_libdir} \
         -DDONT_INSTALL_GCONF_SCHEMAS:BOOLEAN=ON \
         -DUSE_GEO:BOOLEAN=ON \
+	-DUSE_SQUISH=OFF \
         -DCMAKE_BUILD_TYPE:STRING=Release \
 	-DBINARY_PACKAGE_BUILD=1 \
 	-DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
@@ -120,6 +125,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Mon Jun 10 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2.1-2
+- fix for CVE-2013-2126 (Thanks to Alex Tutubalin's patch)
+- Do not use squish (bug #972604)
+
 * Sun May 26 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2.1-1
 - Upgrade to 1.2.1
 
