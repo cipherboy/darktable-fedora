@@ -1,0 +1,85 @@
+commit 52e3da288fb3ef17b38f1d0e346cd57407ea5c03
+Author: johannes hanika <hanika@kit.edu>
+Date:   Mon Jun 10 11:25:09 2013 +0200
+
+    thumbnail compression: make libsquish optional.
+    
+    some poor sobs in undeveloped countries are concerned by software patents.
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 8b3478d..7271e88 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -10,6 +10,7 @@ option(USE_FLICKR "Enable Flickr support" ON)
+ option(USE_GLIBJSON "Enable GlibJson support" ON)
+ option(USE_GNOME_KEYRING "Build gnome-keyring password storage backend" ON)
+ option(USE_UNITY "Use libunity to report progress in the launcher" OFF)
++option(USE_SQUISH "Use thumbnail compression via libsquish" OFF)
+ option(BUILD_SLIDESHOW "Build the opengl slideshow viewer" ON)
+ option(USE_OPENMP "Use openmp threading support." ON)
+ option(USE_OPENCL "Use OpenCL support." ON)
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index a0c230f..9118c66 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -491,12 +491,15 @@ if(USE_COLORD)
+   endif(COLORD_FOUND)
+ endif(USE_COLORD)
+ 
++if(USE_SQUISH)
+ # libsquish for compressed thumbnails:
+ add_dependencies(lib_darktable squish)
+ add_library(squish_static STATIC IMPORTED)
+ set_target_properties(squish_static PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_BINARY_DIR}/external/squish/libsquish.a)
+ target_link_libraries(lib_darktable ${LIBS} squish_static)
+ add_subdirectory(external/squish)
++add_definitions("-DHAVE_SQUISH")
++endif(USE_SQUISH)
+ 
+ install(TARGETS lib_darktable DESTINATION ${LIB_INSTALL}/darktable)
+ # make sure static libs is first
+diff --git a/src/common/mipmap_cache.c b/src/common/mipmap_cache.c
+index dc2751f..4f81902 100644
+--- a/src/common/mipmap_cache.c
++++ b/src/common/mipmap_cache.c
+@@ -26,7 +26,9 @@
+ #include "control/conf.h"
+ #include "control/jobs.h"
+ #include "libraw/libraw.h"
++#ifdef HAVE_SQUISH
+ #include "squish/csquish.h"
++#endif
+ 
+ #include <assert.h>
+ #include <string.h>
+@@ -1377,12 +1379,14 @@ dt_mipmap_cache_decompress(
+   const dt_mipmap_buffer_t *buf,
+   uint8_t *scratchmem)
+ {
++#ifdef HAVE_SQUISH
+   if(darktable.mipmap_cache->compression_type && buf->width > 8 && buf->height > 8)
+   {
+     squish_decompress_image(scratchmem, buf->width, buf->height, buf->buf, squish_dxt1);
+     return scratchmem;
+   }
+   else
++#endif
+   {
+     return buf->buf;
+   }
+@@ -1396,6 +1400,7 @@ dt_mipmap_cache_compress(
+   dt_mipmap_buffer_t *buf,
+   uint8_t *const scratchmem)
+ {
++#ifdef HAVE_SQUISH
+   // only do something if compression is on, don't compress skulls:
+   if(darktable.mipmap_cache->compression_type && buf->width > 8 && buf->height > 8)
+   {
+@@ -1404,6 +1409,7 @@ dt_mipmap_cache_compress(
+     if(darktable.mipmap_cache->compression_type == 1) flags |= squish_colour_range_fit;
+     squish_compress_image(scratchmem, buf->width, buf->height, buf->buf, squish_dxt1);
+   }
++#endif
+ }
+ 
+ 
