@@ -3,13 +3,20 @@
 
 Name:		darktable
 Version:	1.2.1
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://darktable.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.xz
+Source0:	%{name}-%{version}-nopatents.tar.xz
+# darktable contains patented code (DXT/S3TC/Squish) that we cannot ship.
+# Therefore we use this script to remove the patented code before
+# shipping it.
+# Download the upstream tarball and invoke this script while in the
+# tarball's directory:
+# ./dartabke-generate-nopatents-tarball.sh <version> 
+Source1:	darktable-generate-nopatents-tarball.sh
 Patch0:		darktable-broken_full_color_images.patch
 Patch1:		darktable-squish_optional.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -125,6 +132,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Tue Jun 11 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2.1-4
+- Remove patented code (DXT/squish)
+
 * Mon Jun 10 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2.1-3
 - Patch to make squish optional
 
