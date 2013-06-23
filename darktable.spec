@@ -2,8 +2,8 @@
 %define with_gegl 0
 
 Name:		darktable
-Version:	1.2.1
-Release:	4%{?dist}
+Version:	1.2.2
+Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -17,8 +17,6 @@ Source0:	%{name}-%{version}-nopatents.tar.xz
 # tarball's directory:
 # ./dartabke-generate-nopatents-tarball.sh <version> 
 Source1:	darktable-generate-nopatents-tarball.sh
-Patch0:		darktable-broken_full_color_images.patch
-Patch1:		darktable-squish_optional.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -62,8 +60,6 @@ It also enables you to develop raw images and enhance them.
 
 %prep
 %setup -q -n %{name}-%{version}
-%patch0 -p1 -b broken_full_color_images.rej
-%patch1 -p1 -b squish_optional.rej
 
 %build
 mkdir buildFedora
@@ -132,6 +128,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Tue Jun 25 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2.2-1
+- Upgrade to 1.2.2
+
 * Tue Jun 11 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2.1-4
 - Remove patented code (DXT/squish)
 
