@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	1.2.2
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -128,6 +128,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sat Sep 14 2013 Bruno Wolff III <bruno@wolff.to> - 1.2.2-3
+- Rebuild for ilmbase related soname bumps
+
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.2.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
