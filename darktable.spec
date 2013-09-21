@@ -2,8 +2,8 @@
 %define with_gegl 0
 
 Name:		darktable
-Version:	1.2.2
-Release:	3%{?dist}
+Version:	1.2.3
+Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -128,6 +128,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sat Sep 21 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2.3-1
+- Upgrade to 1.2.3
+
 * Sat Sep 14 2013 Bruno Wolff III <bruno@wolff.to> - 1.2.2-3
 - Rebuild for ilmbase related soname bumps
 
