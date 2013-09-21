@@ -122,6 +122,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_bindir}/darktable-viewer
 %{_libdir}/darktable
 %{_datadir}/applications/darktable.desktop
+%{_datadir}/appdata/darktable.appdata.xml
 %{_datadir}/darktable
 %{_datadir}/icons/hicolor/*/apps/darktable.*
 %{_datadir}/man/man1/darktable.1.gz
@@ -130,6 +131,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %changelog
 * Sat Sep 21 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2.3-1
 - Upgrade to 1.2.3
+- Adding appdata file
 
 * Sat Sep 14 2013 Bruno Wolff III <bruno@wolff.to> - 1.2.2-3
 - Rebuild for ilmbase related soname bumps
