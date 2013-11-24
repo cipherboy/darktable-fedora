@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	1.2.3
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -17,6 +17,9 @@ Source0:	%{name}-%{version}-nopatents.tar.xz
 # tarball's directory:
 # ./dartabke-generate-nopatents-tarball.sh <version> 
 Source1:	darktable-generate-nopatents-tarball.sh
+
+Patch0:         try_to_make_dt_compile_with_colord_support_on_fedora.patch
+
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cmake
@@ -44,6 +47,7 @@ BuildRequires:	json-glib-devel
 %if 0%{?with_gegl}
 BuildRequires:	gegl-devel
 %endif
+BuildRequires:	colord-devel
 
 Requires:	gtk2-engines
 
@@ -60,6 +64,7 @@ It also enables you to develop raw images and enhance them.
 
 %prep
 %setup -q -n %{name}-%{version}
+%patch0 -p1
 
 %build
 mkdir buildFedora
@@ -129,6 +134,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sun Nov 24 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2.3-2
+- Add colord-devel support (bug #1033899) with cmake patch (thanks houz) 
+
 * Sat Sep 21 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2.3-1
 - Upgrade to 1.2.3
 - Adding appdata file
