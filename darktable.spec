@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	1.2.3
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -134,6 +134,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Wed Nov 27 2013 Rex Dieter <rdieter@fedoraproject.org> - 1.2.3-3
+- rebuild (openexr)
+
 * Sun Nov 24 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2.3-2
 - Add colord-devel support (bug #1033899) with cmake patch (thanks houz) 
 
