@@ -1,15 +1,16 @@
 #without --enable_gegl "until gegl is fast enough" as developers tell
 %define with_gegl 0
+%define relc rc1
 
 Name:		darktable
-Version:	1.2.3
-Release:	3%{?dist}
+Version:	1.4
+Release:	0.1.%{relc}%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://darktable.sourceforge.net/
-Source0:	%{name}-%{version}-nopatents.tar.xz
+Source0:	%{name}-%{version}~%{relc}-nopatents.tar.xz
 # darktable contains patented code (DXT/S3TC/Squish) that we cannot ship.
 # Therefore we use this script to remove the patented code before
 # shipping it.
@@ -17,8 +18,6 @@ Source0:	%{name}-%{version}-nopatents.tar.xz
 # tarball's directory:
 # ./dartabke-generate-nopatents-tarball.sh <version> 
 Source1:	darktable-generate-nopatents-tarball.sh
-
-Patch0:         try_to_make_dt_compile_with_colord_support_on_fedora.patch
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -63,8 +62,7 @@ It also enables you to develop raw images and enhance them.
 
 
 %prep
-%setup -q -n %{name}-%{version}
-%patch0 -p1
+%setup -q -n %{name}-%{version}~%{relc}
 
 %build
 mkdir buildFedora
@@ -131,9 +129,13 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/darktable
 %{_datadir}/icons/hicolor/*/apps/darktable.*
 %{_datadir}/man/man1/darktable.1.gz
+%{_datadir}/man/man1/darktable-cli.1.gz
 
 
 %changelog
+* Mon Dec  2 2013 Edouard Bourguignon <madko@linuxed.net> - 1.4-0.1.rc1
+- Upgrade to 1.4~rc1
+
 * Wed Nov 27 2013 Rex Dieter <rdieter@fedoraproject.org> - 1.2.3-3
 - rebuild (openexr)
 
