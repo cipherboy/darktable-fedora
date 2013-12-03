@@ -4,7 +4,7 @@
 
 Name:		darktable
 Version:	1.4
-Release:	0.1.%{relc}%{?dist}
+Release:	0.2.%{relc}%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -133,6 +133,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Tue Dec 03 2013 Rex Dieter <rdieter@fedoraproject.org> - 1.4-0.2.rc1
+- rebuild (exiv2)
+
 * Mon Dec  2 2013 Edouard Bourguignon <madko@linuxed.net> - 1.4-0.1.rc1
 - Upgrade to 1.4~rc1
 
