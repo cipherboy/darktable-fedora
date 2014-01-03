@@ -1,16 +1,15 @@
 #without --enable_gegl "until gegl is fast enough" as developers tell
 %define with_gegl 0
-%define relc rc1
 
 Name:		darktable
 Version:	1.4
-Release:	0.2.%{relc}%{?dist}
+Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
 License:	GPLv3+
 URL:		http://darktable.sourceforge.net/
-Source0:	%{name}-%{version}~%{relc}-nopatents.tar.xz
+Source0:	%{name}-%{version}-nopatents.tar.xz
 # darktable contains patented code (DXT/S3TC/Squish) that we cannot ship.
 # Therefore we use this script to remove the patented code before
 # shipping it.
@@ -62,7 +61,7 @@ It also enables you to develop raw images and enhance them.
 
 
 %prep
-%setup -q -n %{name}-%{version}~%{relc}
+%setup -q -n %{name}-%{version}
 
 %build
 mkdir buildFedora
@@ -127,33 +126,22 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/applications/darktable.desktop
 %{_datadir}/appdata/darktable.appdata.xml
 %{_datadir}/darktable
-%{_datadir}/icons/hicolor/*/apps/darktable.*
+%{_datadir}/icons/hicolor/*/apps/darktable*
 %{_datadir}/man/man1/darktable.1.gz
 %{_datadir}/man/man1/darktable-cli.1.gz
 
-
 %changelog
-* Tue Dec 03 2013 Rex Dieter <rdieter@fedoraproject.org> - 1.4-0.2.rc1
-- rebuild (exiv2)
+* Wed Jan  1 2014 Edouard Bourguignon <madko@linuxed.net> - 1.4-1
+- Upgrade to 1.4
 
 * Mon Dec  2 2013 Edouard Bourguignon <madko@linuxed.net> - 1.4-0.1.rc1
 - Upgrade to 1.4~rc1
 
-* Wed Nov 27 2013 Rex Dieter <rdieter@fedoraproject.org> - 1.2.3-3
-- rebuild (openexr)
-
 * Sun Nov 24 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2.3-2
-- Add colord-devel support (bug #1033899) with cmake patch (thanks houz) 
+- Add colord-devel support
 
-* Sat Sep 21 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2.3-1
+* Sun Sep 15 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2.3-1
 - Upgrade to 1.2.3
-- Adding appdata file
-
-* Sat Sep 14 2013 Bruno Wolff III <bruno@wolff.to> - 1.2.2-3
-- Rebuild for ilmbase related soname bumps
-
-* Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.2.2-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
 * Tue Jun 25 2013 Edouard Bourguignon <madko@linuxed.net> - 1.2.2-1
 - Upgrade to 1.2.2
