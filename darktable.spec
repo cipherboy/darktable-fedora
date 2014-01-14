@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	1.4
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -24,7 +24,9 @@ BuildRequires:  cmake
 BuildRequires:	pkgconfig >= 0.22
 BuildRequires:	intltool, gettext
 BuildRequires:	sqlite-devel
+BuildRequires:  GraphicsMagick-devel
 BuildRequires:	libjpeg-devel, libpng-devel, libtiff-devel
+BuildRequires:  openjpeg-devel, libwebp-devel
 BuildRequires:	librsvg2-devel >= 2.26
 BuildRequires:	GConf2-devel, gtk2-devel, cairo-devel, libglade2-devel
 BuildRequires:	lcms2-devel
@@ -46,6 +48,7 @@ BuildRequires:	json-glib-devel
 BuildRequires:	gegl-devel
 %endif
 BuildRequires:	colord-devel
+BuildRequires:	/usr/bin/pod2man
 
 Requires:	gtk2-engines
 
@@ -131,6 +134,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Tue Jan 14 2014 Edouard Bourguignon <madko@linuxed.net> - 1.4-2
+- Add OpenJPEG and WebP support
+- Add missing buildrequires on pod2man
+
 * Wed Jan  1 2014 Edouard Bourguignon <madko@linuxed.net> - 1.4-1
 - Upgrade to 1.4
 
