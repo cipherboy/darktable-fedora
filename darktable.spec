@@ -71,6 +71,7 @@ mkdir buildFedora
 pushd buildFedora
 %cmake \
         -DCMAKE_LIBRARY_PATH=%{_prefix} \
+	-DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF \
 	-DLIB_INSTALL=%{_libdir} \
         -DDONT_INSTALL_GCONF_SCHEMAS=ON \
         -DUSE_GEO=ON \
