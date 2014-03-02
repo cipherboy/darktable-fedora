@@ -2,8 +2,8 @@
 %define with_gegl 0
 
 Name:		darktable
-Version:	1.4
-Release:	2%{?dist}
+Version:	1.4.1
+Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -70,16 +70,18 @@ It also enables you to develop raw images and enhance them.
 mkdir buildFedora
 pushd buildFedora
 %cmake \
-        -DCMAKE_LIBRARY_PATH:PATH=%{_libdir} \
-        -DDONT_INSTALL_GCONF_SCHEMAS:BOOLEAN=ON \
-        -DUSE_GEO:BOOLEAN=ON \
+        -DCMAKE_LIBRARY_PATH=%{_prefix} \
+	-DLIB_INSTALL=%{_libdir} \
+        -DDONT_INSTALL_GCONF_SCHEMAS=ON \
+        -DUSE_GEO=ON \
 	-DUSE_SQUISH=OFF \
+	-DUSE_COLORD=ON \
         -DCMAKE_BUILD_TYPE:STRING=Release \
 	-DBINARY_PACKAGE_BUILD=1 \
 	-DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
 	.. 
 
-make %{?_smp_mflags}
+make %{?_smp_mflags} VERBOSE=1
 popd
 pushd tools/noise
 make %{?_smp_mflags}
@@ -95,6 +97,8 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %find_lang %{name}
 rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/darktable
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/darktable/tools/noise
+rm tools/noise/*.c
+rm tools/noise/Makefile
 cp tools/noise/* $RPM_BUILD_ROOT%{_datadir}/darktable/tools/noise/
 
 
@@ -134,6 +138,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Wed Feb 12 2014 Edouard Bourguignon <madko@linuxed.net> - 1.4.1-1
+- Upgrade to 1.4.1
+- Remove tools source files
+
 * Tue Jan 14 2014 Edouard Bourguignon <madko@linuxed.net> - 1.4-2
 - Add OpenJPEG and WebP support
 - Add missing buildrequires on pod2man
