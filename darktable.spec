@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	1.4.1
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -71,7 +71,6 @@ mkdir buildFedora
 pushd buildFedora
 %cmake \
         -DCMAKE_LIBRARY_PATH=%{_prefix} \
-	-DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF \
 	-DLIB_INSTALL=%{_libdir} \
         -DDONT_INSTALL_GCONF_SCHEMAS=ON \
         -DUSE_GEO=ON \
@@ -139,6 +138,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Mon Mar  3 2014 Edouard Bourguignon <madko@linuxed.net> - 1.4.1-2
+- Restore rpath for internal lib
+
 * Wed Feb 12 2014 Edouard Bourguignon <madko@linuxed.net> - 1.4.1-1
 - Upgrade to 1.4.1
 - Remove tools source files
