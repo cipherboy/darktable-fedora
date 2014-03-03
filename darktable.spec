@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	1.4.1
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -70,16 +70,15 @@ It also enables you to develop raw images and enhance them.
 mkdir buildFedora
 pushd buildFedora
 %cmake \
-        -DCMAKE_LIBRARY_PATH=%{_prefix} \
-	-DLIB_INSTALL=%{_libdir} \
-        -DDONT_INSTALL_GCONF_SCHEMAS=ON \
-        -DUSE_GEO=ON \
-	-DUSE_SQUISH=OFF \
-	-DUSE_COLORD=ON \
+        -DCMAKE_LIBRARY_PATH:PATH=%{_libdir} \
+        -DDONT_INSTALL_GCONF_SCHEMAS:BOOLEAN=ON \
+        -DUSE_GEO:BOOLEAN=ON \
+        -DUSE_SQUISH=OFF \
         -DCMAKE_BUILD_TYPE:STRING=Release \
-	-DBINARY_PACKAGE_BUILD=1 \
-	-DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
-	.. 
+        -DBINARY_PACKAGE_BUILD=1 \
+        -DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
+        ..
+
 
 make %{?_smp_mflags} VERBOSE=1
 popd
@@ -138,6 +137,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Mon Mar  3 2014 Edouard Bourguignon <madko@linuxed.net> - 1.4.1-3
+- Remove wrong library path
+
 * Mon Mar  3 2014 Edouard Bourguignon <madko@linuxed.net> - 1.4.1-2
 - Restore rpath for internal lib
 
