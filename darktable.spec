@@ -2,8 +2,8 @@
 %define with_gegl 0
 
 Name:		darktable
-Version:	1.4.1
-Release:	3%{?dist}
+Version:	1.4.2
+Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -137,6 +137,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Fri Apr 25 2014 Edouard Bourguignon <madko@linuxed.net> - 1.4.2-1
+- Upgrade to 1.4.2
+
 * Mon Mar  3 2014 Edouard Bourguignon <madko@linuxed.net> - 1.4.1-3
 - Remove wrong library path
 
