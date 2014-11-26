@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	1.4.2
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -137,6 +137,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Wed Nov 26 2014 Rex Dieter <rdieter@fedoraproject.org> 1.4.2-4
+- rebuild (openexr)
+
 * Sat Aug 16 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.4.2-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
