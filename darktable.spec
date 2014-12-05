@@ -3,7 +3,7 @@
 
 Name:		darktable
 Version:	1.5.1
-Release:	0.1%{?dist}
+Release:	0.2%{?dist}
 Summary:	Utility to organize and develop raw images
 
 Group:		Applications/Multimedia
@@ -127,6 +127,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_bindir}/darktable
 %{_bindir}/darktable-cli
 %{_bindir}/darktable-cltest
+%{_bindir}/darktable-cmstest
 %{_bindir}/darktable-viewer
 %{_libdir}/darktable
 %{_datadir}/applications/darktable.desktop
@@ -137,6 +138,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Sat Dec 06 2014 Edouard Bourguignon <madko@linuxed.net> - 1.5.1-0.2
+- Add missing darktable-cmstest
+
 * Sat Dec 06 2014 Edouard Bourguignon <madko@linuxed.net> - 1.5.1-0.1
 - Darktable 1.6 rc1
 
