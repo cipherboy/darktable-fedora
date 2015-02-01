@@ -2,7 +2,7 @@
 %define with_gegl 0
 
 Name:		darktable
-Version:	1.6.0
+Version:	1.6.1
 Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
@@ -49,6 +49,8 @@ BuildRequires:	gegl-devel
 %endif
 BuildRequires:	colord-devel
 BuildRequires:	/usr/bin/pod2man
+BuildRequires:	java
+BuildRequires:	saxon
 
 Requires:	gtk2-engines
 
@@ -138,6 +140,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Sun Feb 01 2015 Edouard Bourguignon <madko@linuxed.net> - 1.7.0-1
+- Darktable 1.6.1
+
 * Tue Dec 09 2014 Edouard Bourguignon <madko@linuxed.net> - 1.6.0-1
 - Darktable 1.6.0 stable 
 
