@@ -2,7 +2,7 @@
 %define with_gegl 0
 
 Name:		darktable
-Version:	1.6.1
+Version:	1.6.2
 Release:	1%{?dist}
 Summary:	Utility to organize and develop raw images
 
@@ -138,6 +138,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Mon Feb 02 2015 Edouard Bourguignon <madko@linuxed.net> - 1.6.2-1
+- Darktable 1.6.2
+
 * Sun Feb 01 2015 Edouard Bourguignon <madko@linuxed.net> - 1.6.1-1
 - Darktable 1.6.1
 
