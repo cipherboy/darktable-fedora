@@ -49,8 +49,6 @@ BuildRequires:	gegl-devel
 %endif
 BuildRequires:	colord-devel
 BuildRequires:	/usr/bin/pod2man
-BuildRequires:	java
-BuildRequires:	saxon
 
 Requires:	gtk2-engines
 
