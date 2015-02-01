@@ -140,7 +140,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
-* Sun Feb 01 2015 Edouard Bourguignon <madko@linuxed.net> - 1.7.0-1
+* Sun Feb 01 2015 Edouard Bourguignon <madko@linuxed.net> - 1.6.1-1
 - Darktable 1.6.1
 
 * Wed Jan 21 2015 Peter Robinson <pbrobinson@fedoraproject.org> 1.6.0-2
