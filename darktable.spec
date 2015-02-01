@@ -143,6 +143,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 * Sun Feb 01 2015 Edouard Bourguignon <madko@linuxed.net> - 1.7.0-1
 - Darktable 1.6.1
 
+* Wed Jan 21 2015 Peter Robinson <pbrobinson@fedoraproject.org> 1.6.0-2
+- Rebuild (libgpohoto2) 
+
 * Tue Dec 09 2014 Edouard Bourguignon <madko@linuxed.net> - 1.6.0-1
 - Darktable 1.6.0 stable 
 
