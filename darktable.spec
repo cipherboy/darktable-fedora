@@ -3,7 +3,7 @@
 
 Name: darktable
 Version: 1.6.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Utility to organize and develop raw images
 
 Group: Applications/Multimedia
@@ -67,8 +67,8 @@ It also enables you to develop raw images and enhance them.
 %setup -q -n %{name}-%{version}
 
 %build
-mkdir buildFedora
-pushd buildFedora
+mkdir %{_target_platform} 
+pushd %{_target_platform} 
 %cmake \
         -DCMAKE_LIBRARY_PATH:PATH=%{_libdir} \
         -DDONT_INSTALL_GCONF_SCHEMAS:BOOLEAN=ON \
@@ -87,22 +87,22 @@ make %{?_smp_mflags}
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot} 
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
-pushd buildFedora
-make install DESTDIR=$RPM_BUILD_ROOT
+pushd %{_target_platform} 
+make install DESTDIR=%{buildroot}
 popd
-find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+find %{buildroot} -name '*.la' -exec rm -f {} ';'
 %find_lang %{name}
-rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/darktable
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/darktable/tools/noise
+rm -rf %{buildroot}%{_datadir}/doc/darktable
+mkdir -p %{buildroot}%{_datadir}/darktable/tools/noise
 rm tools/noise/*.c
 rm tools/noise/Makefile
-cp tools/noise/* $RPM_BUILD_ROOT%{_datadir}/darktable/tools/noise/
+cp tools/noise/* %{buildroot}%{_datadir}/darktable/tools/noise/
 
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot} 
 
 %pre
 
@@ -138,6 +138,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Wed Feb 04 2015 Edouard Bourguignon <madko@linuxed.net> - 1.6.2-2
+- Aesthetic changes (useless spaces)
+- Use mkdir %{_target_platform} instead of buildFedora
+ 
 * Mon Feb 02 2015 Edouard Bourguignon <madko@linuxed.net> - 1.6.2-1
 - Darktable 1.6.2
 
