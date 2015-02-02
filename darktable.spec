@@ -141,6 +141,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 * Wed Feb 04 2015 Edouard Bourguignon <madko@linuxed.net> - 1.6.2-2
 - Aesthetic changes (useless spaces)
 - Use mkdir %{_target_platform} instead of buildFedora
+- Consistence use of %var instead of $VAR
  
 * Mon Feb 02 2015 Edouard Bourguignon <madko@linuxed.net> - 1.6.2-1
 - Darktable 1.6.2
