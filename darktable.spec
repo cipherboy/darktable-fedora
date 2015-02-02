@@ -1,56 +1,56 @@
 #without --enable_gegl "until gegl is fast enough" as developers tell
 %define with_gegl 0
 
-Name:		darktable
-Version:	1.6.2
-Release:	1%{?dist}
-Summary:	Utility to organize and develop raw images
+Name: darktable
+Version: 1.6.2
+Release: 1%{?dist}
+Summary: Utility to organize and develop raw images
 
-Group:		Applications/Multimedia
-License:	GPLv3+
-URL:		http://darktable.sourceforge.net/
-Source0:	%{name}-%{version}-nopatents.tar.xz
+Group: Applications/Multimedia
+License: GPLv3+
+URL: http://darktable.sourceforge.net/
+Source0: %{name}-%{version}-nopatents.tar.xz
 # darktable contains patented code (DXT/S3TC/Squish) that we cannot ship.
 # Therefore we use this script to remove the patented code before
 # shipping it.
 # Download the upstream tarball and invoke this script while in the
 # tarball's directory:
 # ./dartabke-generate-nopatents-tarball.sh <version> 
-Source1:	darktable-generate-nopatents-tarball.sh
+Source1: darktable-generate-nopatents-tarball.sh
 
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  cmake
-BuildRequires:	pkgconfig >= 0.22
-BuildRequires:	intltool, gettext
-BuildRequires:	sqlite-devel
-BuildRequires:  GraphicsMagick-devel
-BuildRequires:	libjpeg-devel, libpng-devel, libtiff-devel
-BuildRequires:  openjpeg-devel, libwebp-devel
-BuildRequires:	librsvg2-devel >= 2.26
-BuildRequires:	GConf2-devel, gtk2-devel, cairo-devel, libglade2-devel
-BuildRequires:	lcms2-devel
-BuildRequires:	exiv2-devel
-BuildRequires:	lensfun-devel
-BuildRequires:	GConf2
-BuildRequires:	OpenEXR-devel >= 1.6
-BuildRequires:	libgphoto2-devel >= 2.4.5	
-BuildRequires:	libcurl-devel >= 7.18.0
-BuildRequires:	flickcurl-devel
-BuildRequires:	dbus-glib-devel >= 0.80 
-BuildRequires:	libgnome-keyring-devel >= 2.28.0
-BuildRequires:	gnome-doc-utils, fop
-BuildRequires:	desktop-file-utils
-BuildRequires:	SDL-devel
-BuildRequires:	libsoup-devel	
-BuildRequires:	json-glib-devel
+BuildRequires: cmake
+BuildRequires: pkgconfig >= 0.22
+BuildRequires: intltool, gettext
+BuildRequires: sqlite-devel
+BuildRequires: GraphicsMagick-devel
+BuildRequires: libjpeg-devel, libpng-devel, libtiff-devel
+BuildRequires: openjpeg-devel, libwebp-devel
+BuildRequires: librsvg2-devel >= 2.26
+BuildRequires: GConf2-devel, gtk2-devel, cairo-devel, libglade2-devel
+BuildRequires: lcms2-devel
+BuildRequires: exiv2-devel
+BuildRequires: lensfun-devel
+BuildRequires: GConf2
+BuildRequires: OpenEXR-devel >= 1.6
+BuildRequires: libgphoto2-devel >= 2.4.5
+BuildRequires: libcurl-devel >= 7.18.0
+BuildRequires: flickcurl-devel
+BuildRequires: dbus-glib-devel >= 0.80 
+BuildRequires: libgnome-keyring-devel >= 2.28.0
+BuildRequires: gnome-doc-utils, fop
+BuildRequires: desktop-file-utils
+BuildRequires: SDL-devel
+BuildRequires: libsoup-devel	
+BuildRequires: json-glib-devel
 %if 0%{?with_gegl}
-BuildRequires:	gegl-devel
+BuildRequires: gegl-devel
 %endif
-BuildRequires:	colord-devel
-BuildRequires:	/usr/bin/pod2man
+BuildRequires: colord-devel
+BuildRequires: /usr/bin/pod2man
 
-Requires:	gtk2-engines
+Requires: gtk2-engines
 
 # uses xmmintrin.h
 ExclusiveArch: %{ix86} x86_64
@@ -73,7 +73,7 @@ pushd buildFedora
         -DCMAKE_LIBRARY_PATH:PATH=%{_libdir} \
         -DDONT_INSTALL_GCONF_SCHEMAS:BOOLEAN=ON \
         -DUSE_GEO:BOOLEAN=ON \
-        -DUSE_SQUISH=OFF \
+        -DUSE_SQUISH:BOOLEAN=OFF \
         -DCMAKE_BUILD_TYPE:STRING=Release \
         -DBINARY_PACKAGE_BUILD=1 \
         -DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
@@ -110,17 +110,17 @@ rm -rf $RPM_BUILD_ROOT
 touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
 
 %postun
-update-desktop-database &> /dev/null || :                                       
-if [ $1 -eq 0 ] ; then                                                          
-    touch --no-create %{_datadir}/icons/hicolor &>/dev/null                     
-    gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :            
-fi                                                                              
+update-desktop-database &> /dev/null || :
+if [ $1 -eq 0 ] ; then
+    touch --no-create %{_datadir}/icons/hicolor &>/dev/null
+    gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
+fi
 
-%posttrans                                                                      
+%posttrans
 gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 %preun
- 
+
 %files -f %{name}.lang 
 %defattr(-,root,root,-)
 %doc doc/README doc/AUTHORS doc/LICENSE doc/TRANSLATORS
