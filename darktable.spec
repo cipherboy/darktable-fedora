@@ -44,6 +44,7 @@ BuildRequires: desktop-file-utils
 BuildRequires: SDL-devel
 BuildRequires: libsoup-devel	
 BuildRequires: json-glib-devel
+BuildRequires: lua-devel
 %if 0%{?with_gegl}
 BuildRequires: gegl-devel
 %endif
