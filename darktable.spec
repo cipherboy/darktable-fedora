@@ -3,7 +3,7 @@
 
 Name: darktable
 Version: 1.6.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Utility to organize and develop raw images
 
 Group: Applications/Multimedia
@@ -52,6 +52,7 @@ BuildRequires: colord-devel
 BuildRequires: /usr/bin/pod2man
 
 Requires: gtk2-engines
+Requires: lua-devel
 
 # uses xmmintrin.h
 ExclusiveArch: %{ix86} x86_64
@@ -139,6 +140,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Wed Feb 04 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.2-3
+- Added LUA support
+
 * Wed Feb 04 2015 Edouard Bourguignon <madko@linuxed.net> - 1.6.2-2
 - Aesthetic changes (useless spaces)
 - Use mkdir %{_target_platform} instead of buildFedora
