@@ -65,6 +65,8 @@ It also enables you to develop raw images and enhance them.
 
 %prep
 %setup -q -n %{name}-%{version}
+Patch0: darktable-patch.patch
+%patch0 -p 0
 
 %build
 mkdir %{_target_platform} 
@@ -138,6 +140,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Wed Mar 18 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.3-2
+- Backport of fix
+
 * Mon Mar 02 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.3-1
 - Darktable 1.6.3
 - Fixed date of Feb 22 2015 changelog.
