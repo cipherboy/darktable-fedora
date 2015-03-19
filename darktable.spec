@@ -3,7 +3,7 @@
 
 Name: darktable
 Version: 1.6.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Utility to organize and develop raw images
 
 Group: Applications/Multimedia
@@ -141,7 +141,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 %changelog
 * Wed Mar 18 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.3-2
-- Backport of fix
+- Backport of fix for bugreport #1202105
 
 * Mon Mar 02 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.3-1
 - Darktable 1.6.3
