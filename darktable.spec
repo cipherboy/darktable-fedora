@@ -10,6 +10,7 @@ Group: Applications/Multimedia
 License: GPLv3+
 URL: http://darktable.sourceforge.net/
 Source0: %{name}-%{version}-nopatents.tar.xz
+
 # darktable contains patented code (DXT/S3TC/Squish) that we cannot ship.
 # Therefore we use this script to remove the patented code before
 # shipping it.
@@ -17,6 +18,7 @@ Source0: %{name}-%{version}-nopatents.tar.xz
 # tarball's directory:
 # ./dartabke-generate-nopatents-tarball.sh <version> 
 Source1: darktable-generate-nopatents-tarball.sh
+Patch0: darktable-patch.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -65,8 +67,8 @@ It also enables you to develop raw images and enhance them.
 
 %prep
 %setup -q -n %{name}-%{version}
-Patch0: darktable-patch.patch
-%patch0 -p 0
+
+%patch0 -p 1
 
 %build
 mkdir %{_target_platform} 
