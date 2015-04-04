@@ -2,8 +2,8 @@
 %define with_gegl 0
 
 Name: darktable
-Version: 1.6.3
-Release: 2%{?dist}
+Version: 1.6.4
+Release: 1%{?dist}
 Summary: Utility to organize and develop raw images
 
 Group: Applications/Multimedia
@@ -18,7 +18,6 @@ Source0: %{name}-%{version}-nopatents.tar.xz
 # tarball's directory:
 # ./dartabke-generate-nopatents-tarball.sh <version> 
 Source1: darktable-generate-nopatents-tarball.sh
-Patch0: darktable-patch.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -68,7 +67,6 @@ It also enables you to develop raw images and enhance them.
 %prep
 %setup -q -n %{name}-%{version}
 
-%patch0 -p 1
 
 %build
 mkdir %{_target_platform} 
@@ -142,6 +140,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Sat Apr 4 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.4-1
+- Minor update. Full changelog at https://github.com/darktable-org/darktable/releases/tag/release-1.6.4
+- Removed patch for Canon EOS Rebel, because the fixed code is in the upstream stable release.
+
 * Wed Mar 18 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.3-2
 - Backport of fix for bugreport #1202105
 
