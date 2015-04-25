@@ -2,7 +2,7 @@
 %define with_gegl 0
 
 Name: darktable
-Version: 1.6.4
+Version: 1.6.6
 Release: 1%{?dist}
 Summary: Utility to organize and develop raw images
 
@@ -140,6 +140,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Sun Apr 26 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.6-1
+- Minor update. Full changelog at https://github.com/darktable-org/darktable/releases/tag/release-1.6.6
+
 * Sat Apr 4 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.4-1
 - Minor update. Full changelog at https://github.com/darktable-org/darktable/releases/tag/release-1.6.4
 - Removed patch for Canon EOS Rebel, because the fixed code is in the upstream stable release.
