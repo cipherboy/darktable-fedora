@@ -3,7 +3,7 @@
 
 Name: darktable
 Version: 1.6.6
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Utility to organize and develop raw images
 
 Group: Applications/Multimedia
@@ -140,6 +140,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Thu May 14 2015 Nils Philippsen <nils@redhat.com> - 1.6.6-2
+- rebuild for lensfun-0.3.1
+
 * Sun Apr 26 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.6-1
 - Minor update. Full changelog at https://github.com/darktable-org/darktable/releases/tag/release-1.6.6
 
