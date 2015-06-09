@@ -2,13 +2,13 @@
 %define with_gegl 0
 
 Name: darktable
-Version: 1.6.6
-Release: 2%{?dist}
+Version: 1.6.7
+Release: 1%{?dist}
 Summary: Utility to organize and develop raw images
 
 Group: Applications/Multimedia
 License: GPLv3+
-URL: http://darktable.sourceforge.net/
+URL: http://www.darktable.org/
 Source0: %{name}-%{version}-nopatents.tar.xz
 
 # darktable contains patented code (DXT/S3TC/Squish) that we cannot ship.
@@ -140,6 +140,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Thu Jun 9 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.7-1
+- Corrected Darktable website in spec file
+- Minor update
+
 * Thu May 14 2015 Nils Philippsen <nils@redhat.com> - 1.6.6-2
 - rebuild for lensfun-0.3.1
 
