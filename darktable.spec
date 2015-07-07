@@ -3,7 +3,7 @@
 
 Name: darktable
 Version: 1.6.7
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: Utility to organize and develop raw images
 
 Group: Applications/Multimedia
@@ -50,6 +50,7 @@ BuildRequires: gegl-devel
 %endif
 BuildRequires: colord-devel
 BuildRequires: /usr/bin/pod2man
+BuildRequires: opencl-headers
 
 Requires: gtk2-engines
 
@@ -67,6 +68,9 @@ It also enables you to develop raw images and enhance them.
 %prep
 %setup -q -n %{name}-%{version}
 
+# This is a little hacky, but it ensures we're building against the opencl system headers
+rm -rf src/external/CL/*.h*
+cp -a /usr/include/CL/*.h* src/external/CL/
 
 %build
 mkdir %{_target_platform} 
@@ -140,13 +144,16 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Tue Jul  7 2015 Tom Callaway <spot@fedoraproject.org> - 1.6.7-4
+- unbundle opencl headers (and use system opencl headers)
+
 * Wed Jun 24 2015 Rex Dieter <rdieter@fedoraproject.org> - 1.6.7-3
 - rebuild (exiv2)
 
 * Wed Jun 17 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.6.7-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
-* Thu Jun 9 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.7-1
+* Tue Jun 9 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.7-1
 - Corrected Darktable website in spec file
 - Minor update
 
