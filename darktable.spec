@@ -22,23 +22,21 @@ Source1: darktable-generate-nopatents-tarball.sh
 BuildRequires: cmake
 BuildRequires: pkgconfig >= 0.22
 BuildRequires: intltool, gettext
+BuildRequires: cairo-devel
 BuildRequires: sqlite-devel
 BuildRequires: GraphicsMagick-devel
+BuildRequires: gtk2-devel
 BuildRequires: libjpeg-devel, libpng-devel, libtiff-devel
 BuildRequires: openjpeg-devel, libwebp-devel
 BuildRequires: librsvg2-devel >= 2.26
-BuildRequires: GConf2-devel, gtk2-devel, cairo-devel, libglade2-devel
 BuildRequires: lcms2-devel
 BuildRequires: exiv2-devel
 BuildRequires: lensfun-devel
-BuildRequires: GConf2
 BuildRequires: OpenEXR-devel >= 1.6
 BuildRequires: libgphoto2-devel >= 2.4.5
 BuildRequires: libcurl-devel >= 7.18.0
 BuildRequires: flickcurl-devel
-BuildRequires: dbus-glib-devel >= 0.80 
 BuildRequires: libgnome-keyring-devel >= 2.28.0
-BuildRequires: gnome-doc-utils, fop
 BuildRequires: desktop-file-utils
 BuildRequires: SDL-devel
 BuildRequires: libsoup-devel	
@@ -135,6 +133,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 - Update to 1.6.8
 - Modernize spec file for current rpmbuild
 - Drop GConf handling now that darktable no longer uses it
+- Drop unused build deps
 
 * Tue Jul  7 2015 Tom Callaway <spot@fedoraproject.org> - 1.6.7-4
 - unbundle opencl headers (and use system opencl headers)
