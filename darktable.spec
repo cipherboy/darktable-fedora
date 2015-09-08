@@ -19,8 +19,6 @@ Source0: %{name}-%{version}-nopatents.tar.xz
 # ./dartabke-generate-nopatents-tarball.sh <version> 
 Source1: darktable-generate-nopatents-tarball.sh
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
 BuildRequires: cmake
 BuildRequires: pkgconfig >= 0.22
 BuildRequires: intltool, gettext
@@ -66,7 +64,7 @@ It also enables you to develop raw images and enhance them.
 
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 
 # This is a little hacky, but it ensures we're building against the opencl system headers
 rm -rf src/external/CL/*.h*
@@ -93,7 +91,6 @@ make %{?_smp_mflags}
 
 
 %install
-rm -rf %{buildroot} 
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 pushd %{_target_platform} 
 make install DESTDIR=%{buildroot}
@@ -106,11 +103,6 @@ rm tools/noise/*.c
 rm tools/noise/Makefile
 cp tools/noise/* %{buildroot}%{_datadir}/darktable/tools/noise/
 
-
-%clean
-rm -rf %{buildroot} 
-
-%pre
 
 %post
 touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
@@ -125,10 +117,7 @@ fi
 %posttrans
 gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
-%preun
-
 %files -f %{name}.lang 
-%defattr(-,root,root,-)
 %doc doc/README doc/AUTHORS doc/LICENSE doc/TRANSLATORS
 %{_bindir}/darktable
 %{_bindir}/darktable-cli
@@ -146,6 +135,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %changelog
 * Tue Sep 08 2015 Kalev Lember <klember@redhat.com> - 1.6.8-1
 - Update to 1.6.8
+- Modernize spec file for current rpmbuild
 
 * Tue Jul  7 2015 Tom Callaway <spot@fedoraproject.org> - 1.6.7-4
 - unbundle opencl headers (and use system opencl headers)
