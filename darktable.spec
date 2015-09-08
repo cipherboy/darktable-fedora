@@ -36,9 +36,9 @@ BuildRequires: OpenEXR-devel >= 1.6
 BuildRequires: libgphoto2-devel >= 2.4.5
 BuildRequires: libcurl-devel >= 7.18.0
 BuildRequires: flickcurl-devel
-BuildRequires: libgnome-keyring-devel >= 2.28.0
 BuildRequires: desktop-file-utils
 BuildRequires: SDL-devel
+BuildRequires: libsecret-devel
 BuildRequires: libsoup-devel	
 BuildRequires: json-glib-devel
 %if 0%{?with_gegl}
@@ -134,6 +134,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 - Modernize spec file for current rpmbuild
 - Drop GConf handling now that darktable no longer uses it
 - Drop unused build deps
+- Build with libsecret support, instead of libgnome-keyring
 
 * Tue Jul  7 2015 Tom Callaway <spot@fedoraproject.org> - 1.6.7-4
 - unbundle opencl headers (and use system opencl headers)
