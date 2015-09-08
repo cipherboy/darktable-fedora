@@ -114,7 +114,8 @@ fi
 gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 %files -f %{name}.lang 
-%doc doc/README doc/AUTHORS doc/LICENSE doc/TRANSLATORS
+%license doc/LICENSE
+%doc doc/README doc/AUTHORS doc/TRANSLATORS
 %{_bindir}/darktable
 %{_bindir}/darktable-cli
 %{_bindir}/darktable-cltest
@@ -135,6 +136,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 - Drop GConf handling now that darktable no longer uses it
 - Drop unused build deps
 - Build with libsecret support, instead of libgnome-keyring
+- Use license macro
 
 * Tue Jul  7 2015 Tom Callaway <spot@fedoraproject.org> - 1.6.7-4
 - unbundle opencl headers (and use system opencl headers)
