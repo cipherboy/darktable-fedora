@@ -75,7 +75,6 @@ mkdir %{_target_platform}
 pushd %{_target_platform} 
 %cmake \
         -DCMAKE_LIBRARY_PATH:PATH=%{_libdir} \
-        -DDONT_INSTALL_GCONF_SCHEMAS:BOOLEAN=ON \
         -DUSE_GEO:BOOLEAN=ON \
         -DUSE_SQUISH:BOOLEAN=OFF \
         -DCMAKE_BUILD_TYPE:STRING=Release \
@@ -91,7 +90,6 @@ make %{?_smp_mflags}
 
 
 %install
-export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 pushd %{_target_platform} 
 make install DESTDIR=%{buildroot}
 popd
@@ -136,6 +134,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 * Tue Sep 08 2015 Kalev Lember <klember@redhat.com> - 1.6.8-1
 - Update to 1.6.8
 - Modernize spec file for current rpmbuild
+- Drop GConf handling now that darktable no longer uses it
 
 * Tue Jul  7 2015 Tom Callaway <spot@fedoraproject.org> - 1.6.7-4
 - unbundle opencl headers (and use system opencl headers)
