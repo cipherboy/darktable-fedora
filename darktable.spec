@@ -2,8 +2,8 @@
 %define with_gegl 0
 
 Name: darktable
-Version: 1.6.7
-Release: 4%{?dist}
+Version: 1.6.8
+Release: 1%{?dist}
 Summary: Utility to organize and develop raw images
 
 Group: Applications/Multimedia
@@ -144,6 +144,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Tue Sep 08 2015 Kalev Lember <klember@redhat.com> - 1.6.8-1
+- Update to 1.6.8
+
 * Tue Jul  7 2015 Tom Callaway <spot@fedoraproject.org> - 1.6.7-4
 - unbundle opencl headers (and use system opencl headers)
 
