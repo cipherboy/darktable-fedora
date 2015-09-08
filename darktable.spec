@@ -3,7 +3,7 @@
 
 Name: darktable
 Version: 1.6.8
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Utility to organize and develop raw images
 
 Group: Applications/Multimedia
@@ -41,6 +41,7 @@ BuildRequires: SDL-devel
 BuildRequires: libsecret-devel
 BuildRequires: libsoup-devel	
 BuildRequires: json-glib-devel
+BuildRequires: lua-devel
 %if 0%{?with_gegl}
 BuildRequires: gegl-devel
 %endif
@@ -67,6 +68,8 @@ It also enables you to develop raw images and enhance them.
 # This is a little hacky, but it ensures we're building against the opencl system headers
 rm -rf src/external/CL/*.h*
 cp -a /usr/include/CL/*.h* src/external/CL/
+# Remove bundled lua
+rm -rf src/external/lua/
 
 %build
 mkdir %{_target_platform} 
@@ -130,6 +133,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Tue Sep 08 2015 Kalev Lember <klember@redhat.com> - 1.6.8-2
+- Build with system lua
+- Remove bundled lua in prep to make sure it's not used
+
 * Tue Sep 08 2015 Kalev Lember <klember@redhat.com> - 1.6.8-1
 - Update to 1.6.8
 - Modernize spec file for current rpmbuild
