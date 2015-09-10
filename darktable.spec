@@ -3,7 +3,7 @@
 
 Name: darktable
 Version: 1.6.8
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Utility to organize and develop raw images
 
 Group: Applications/Multimedia
@@ -41,7 +41,6 @@ BuildRequires: SDL-devel
 BuildRequires: libsecret-devel
 BuildRequires: libsoup-devel	
 BuildRequires: json-glib-devel
-BuildRequires: lua-devel
 %if 0%{?with_gegl}
 BuildRequires: gegl-devel
 %endif
@@ -133,6 +132,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Thu Sep 10 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.8-3
+- spec file: removed BuildRequires: lua-devel because Darktable supports only LUA 5.2 version
+
 * Tue Sep 08 2015 Kalev Lember <klember@redhat.com> - 1.6.8-2
 - Build with system lua
 - Remove bundled lua in prep to make sure it's not used
