@@ -1,0 +1,36 @@
+From 826152bc3564e74133680cc53e69e040d3663b47 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Pedro=20C=C3=B4rte-Real?= <pedro@pedrocr.net>
+Date: Mon, 2 Mar 2015 13:30:53 +0000
+Subject: [PATCH] Support for the Canon "Digital Rebel" (300D alias)
+
+---
+ src/external/adobe_coeff.c             | 1 +
+ src/external/rawspeed/data/cameras.xml | 3 +++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/src/external/adobe_coeff.c b/src/external/adobe_coeff.c
+index 051c896..5b4be66 100644
+--- a/src/external/adobe_coeff.c
++++ b/src/external/adobe_coeff.c
+@@ -36,6 +36,7 @@ static void dt_dcraw_adobe_coeff(const char *name, float cam_xyz[1][12])
+     { "Canon EOS 60D", 0, 0x2ff7, { 6719,-994,-925,-4408,12426,2211,-887,2129,6051 } },
+     { "Canon EOS 70D", 0, 0x3bc7, { 7034,-804,-1014,-4420,12564,2058,-851,1994,5758 } },
+     { "Canon EOS 100D", 0, 0x350f, { 6602,-841,-939,-4472,12458,2247,-975,2039,6148 } },
++    { "Canon EOS DIGITAL REBEL", 0, 0xfa0, { 8197,-2000,-1118,-6714,14335,2592,-2536,3178,8266 } },
+     { "Canon EOS 300D DIGITAL", 0, 0xfa0, { 8197,-2000,-1118,-6714,14335,2592,-2536,3178,8266 } },
+     { "Canon EOS 350D DIGITAL", 0, 0xfff, { 6018,-617,-965,-8645,15881,2975,-1530,1719,7642 } },
+     { "Canon EOS 400D DIGITAL", 0, 0xe8e, { 7054,-1501,-990,-8156,15544,2812,-1278,1414,7796 } },
+diff --git a/src/external/rawspeed/data/cameras.xml b/src/external/rawspeed/data/cameras.xml
+index 50b798d..b19507e 100644
+--- a/src/external/rawspeed/data/cameras.xml
++++ b/src/external/rawspeed/data/cameras.xml
+@@ -101,6 +101,9 @@
+ 			<Vertical x="0" width="60"/>
+ 			<Horizontal y="0" height="10"/>
+ 		</BlackAreas>
++		<Aliases>
++			<Alias>Canon EOS DIGITAL REBEL</Alias>
++		</Aliases>
+ 	</Camera>
+ 	<Camera make="Canon" model="Canon EOS D30">
+ 		<CFA width="2" height="2">
