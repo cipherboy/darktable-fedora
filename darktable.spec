@@ -2,8 +2,8 @@
 %define with_gegl 0
 
 Name: darktable
-Version: 1.6.8
-Release: 3%{?dist}
+Version: 1.6.9
+Release: 1%{?dist}
 Summary: Utility to organize and develop raw images
 
 Group: Applications/Multimedia
@@ -132,6 +132,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Wed Oct 21 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.9-1
+- Update to 1.6.9
+
 * Thu Sep 10 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.8-3
 - spec file: removed BuildRequires: lua-devel because Darktable supports only LUA 5.2 version
 
