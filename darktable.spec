@@ -3,7 +3,7 @@
 
 Name: darktable
 Version: 1.6.9
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Utility to organize and develop raw images
 
 Group: Applications/Multimedia
@@ -64,9 +64,10 @@ It also enables you to develop raw images and enhance them.
 %prep
 %setup -q
 
-# This is a little hacky, but it ensures we're building against the opencl system headers
-rm -rf src/external/CL/*.h*
-cp -a /usr/include/CL/*.h* src/external/CL/
+# Remove bundled OpenCL headers.
+rm -rf src/external/CL
+sed -i -e 's, \"external/CL/\*\.h\" , ,' src/CMakeLists.txt
+
 # Remove bundled lua
 rm -rf src/external/lua/
 
@@ -132,6 +133,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Wed Nov 04 2015 Ralf Corsépius <corsepiu@fedoraproject.org> - 1.6.9-2
+- Rework bundled opencl-headers handling in %%prep (RHBZ#1264933).
+
 * Wed Oct 21 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.9-1
 - Update to 1.6.9
 
