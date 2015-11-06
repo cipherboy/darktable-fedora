@@ -134,8 +134,6 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
-
-=======
 * Fri Nov 06 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.9-3
 - Removed x86 32 bit CPU support
 
