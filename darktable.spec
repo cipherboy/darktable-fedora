@@ -3,11 +3,8 @@
 
 Name: darktable
 Version: 1.6.9
-<<<<<<< HEAD
-Release: 2%{?dist}
-=======
 Release: 3%{?dist}
->>>>>>> master
+
 Summary: Utility to organize and develop raw images
 
 Group: Applications/Multimedia
@@ -137,12 +134,11 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
-<<<<<<< HEAD
+
 =======
 * Fri Nov 06 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.9-3
 - Removed x86 32 bit CPU support
 
->>>>>>> master
 * Wed Nov 04 2015 Ralf Corsépius <corsepiu@fedoraproject.org> - 1.6.9-2
 - Rework bundled opencl-headers handling in %%prep (RHBZ#1264933).
 
