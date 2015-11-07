@@ -81,7 +81,6 @@ pushd %{_target_platform}
         -DUSE_SQUISH:BOOLEAN=OFF \
         -DCMAKE_BUILD_TYPE:STRING=Release \
         -DBINARY_PACKAGE_BUILD=1 \
-        -DCUSTOM_CFLAGS=ON \
         -DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
         ..
 
