@@ -3,7 +3,7 @@
 
 Name: darktable
 Version: 1.6.9
-Release: 3%{?dist}
+Release: 4%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -81,6 +81,7 @@ pushd %{_target_platform}
         -DUSE_SQUISH:BOOLEAN=OFF \
         -DCMAKE_BUILD_TYPE:STRING=Release \
         -DBINARY_PACKAGE_BUILD=1 \
+        -DCUSTOM_CFLAGS=ON \
         -DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
         ..
 
@@ -134,6 +135,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/man/man1/darktable-cli.1.gz
 
 %changelog
+* Sat Nov 07 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.9-4
+- Added -DCUSTOM_CFLAGS=ON
+
 * Fri Nov 06 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.9-3
 - Removed x86 32 bit CPU support
 
