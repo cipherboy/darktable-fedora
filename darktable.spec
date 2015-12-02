@@ -3,7 +3,7 @@
 
 Name: darktable
 Version: 1.6.9
-Release: 5%{?dist}
+Release: 6%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -132,8 +132,12 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_datadir}/icons/hicolor/*/apps/darktable*
 %{_datadir}/man/man1/darktable.1.gz
 %{_datadir}/man/man1/darktable-cli.1.gz
+%{_libexecdir}/darktable/
 
 %changelog
+* Wed Dec 02 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.9-6
+- Added %{_libexecdir}/darktable/ to fix bugreport #1278142
+
 * Sat Nov 07 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.9-5
 - Removed -DCUSTOM_CFLAGS=ON Please read https://bugzilla.redhat.com/show_bug.cgi?id=1278064#c18
 
