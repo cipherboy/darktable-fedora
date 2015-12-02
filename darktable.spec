@@ -98,10 +98,10 @@ popd
 find %{buildroot} -name '*.la' -exec rm -f {} ';'
 %find_lang %{name}
 rm -rf %{buildroot}%{_datadir}/doc/darktable
-mkdir -p %{buildroot}%{_datadir}/darktable/tools/noise
+mkdir -p %{buildroot}%{_libexecdir}/darktable/tools/noise
 rm tools/noise/*.c
 rm tools/noise/Makefile
-cp tools/noise/* %{buildroot}%{_datadir}/darktable/tools/noise/
+cp tools/noise/* %{buildroot}%{_libexecdir}/darktable/tools/noise/
 
 
 %post
@@ -128,7 +128,6 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libdir}/darktable
 %{_datadir}/applications/darktable.desktop
 %{_datadir}/appdata/darktable.appdata.xml
-%{_datadir}/darktable
 %{_datadir}/icons/hicolor/*/apps/darktable*
 %{_datadir}/man/man1/darktable.1.gz
 %{_datadir}/man/man1/darktable-cli.1.gz
