@@ -126,6 +126,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_bindir}/darktable-cmstest
 %{_bindir}/darktable-viewer
 %{_libdir}/darktable
+%{_datadir}/darktable
 %{_datadir}/applications/darktable.desktop
 %{_datadir}/appdata/darktable.appdata.xml
 %{_datadir}/icons/hicolor/*/apps/darktable*
