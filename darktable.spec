@@ -3,7 +3,7 @@
 
 Name: darktable
 Version: 1.6.9
-Release: 6%{?dist}
+Release: 7%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -135,6 +135,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Sun Jan 03 2016 Rex Dieter <rdieter@fedoraproject.org> 1.6.9-7
+- rebuild (lensfun)
+
 * Wed Dec 02 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.9-6
 - Added %{_libexecdir}/darktable/ to fix bugreport #1278142
 
