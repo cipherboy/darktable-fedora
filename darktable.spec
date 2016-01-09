@@ -1,55 +1,50 @@
-#without --enable_gegl "until gegl is fast enough" as developers tell
-%define with_gegl 0
-
 Name: darktable
-Version: 1.6.9
-Release: 7%{?dist}
+Version: 2.0.0
+Release: 1%{?dist}
 
 Summary: Utility to organize and develop raw images
 
-Group: Applications/Multimedia
 License: GPLv3+
 URL: http://www.darktable.org/
-Source0: %{name}-%{version}-nopatents.tar.xz
+Source0: https://github.com/darktable-org/darktable/releases/download/release-%{version}/darktable-%{version}.tar.xz
 
-# darktable contains patented code (DXT/S3TC/Squish) that we cannot ship.
-# Therefore we use this script to remove the patented code before
-# shipping it.
-# Download the upstream tarball and invoke this script while in the
-# tarball's directory:
-# ./dartabke-generate-nopatents-tarball.sh <version> 
-Source1: darktable-generate-nopatents-tarball.sh
-
-BuildRequires: cmake
-BuildRequires: pkgconfig >= 0.22
-BuildRequires: intltool, gettext
 BuildRequires: cairo-devel
-BuildRequires: sqlite-devel
-BuildRequires: GraphicsMagick-devel
-BuildRequires: gtk2-devel
-BuildRequires: libjpeg-devel, libpng-devel, libtiff-devel
-BuildRequires: openjpeg-devel, libwebp-devel
-BuildRequires: librsvg2-devel >= 2.26
-BuildRequires: lcms2-devel
-BuildRequires: exiv2-devel
-BuildRequires: lensfun-devel
-BuildRequires: OpenEXR-devel >= 1.6
-BuildRequires: libgphoto2-devel >= 2.4.5
-BuildRequires: libcurl-devel >= 7.18.0
-BuildRequires: flickcurl-devel
-BuildRequires: desktop-file-utils
-BuildRequires: SDL-devel
-BuildRequires: libsecret-devel
-BuildRequires: libsoup-devel	
-BuildRequires: json-glib-devel
-%if 0%{?with_gegl}
-BuildRequires: gegl-devel
-%endif
+BuildRequires: cmake
+BuildRequires: colord-gtk-devel
 BuildRequires: colord-devel
-BuildRequires: /usr/bin/pod2man
+BuildRequires: cups-devel
+BuildRequires: desktop-file-utils
+BuildRequires: exiv2-devel
+BuildRequires: flickcurl-devel
+BuildRequires: GraphicsMagick-devel
+BuildRequires: gtk3-devel
+BuildRequires: intltool
+BuildRequires: gettext
+BuildRequires: json-glib-devel
+BuildRequires: lcms2-devel
+BuildRequires: lensfun-devel
+BuildRequires: libcurl-devel >= 7.18.0
+BuildRequires: libgphoto2-devel >= 2.4.5
+BuildRequires: libjpeg-devel
+BuildRequires: libpng-devel
+BuildRequires: librsvg2-devel >= 2.26
+BuildRequires: libsecret-devel
+BuildRequires: libsoup-devel
+BuildRequires: libtiff-devel
+BuildRequires: libwebp-devel
 BuildRequires: opencl-headers
-
-Requires: gtk2-engines
+BuildRequires: OpenEXR-devel >= 1.6
+BuildRequires: openjpeg-devel
+%if %{with osm-gps-map-devel}
+BuildRequires: osm-gps-map-devel >= 1.0
+%endif
+BuildRequires: perl
+BuildRequires: pkgconfig >= 0.22
+BuildRequires: po4a
+BuildRequires: /usr/bin/pod2man
+BuildRequires: pugixml-devel
+BuildRequires: SDL-devel
+BuildRequires: sqlite-devel
 
 # uses xmmintrin.h
 ExclusiveArch: x86_64
@@ -63,7 +58,8 @@ It also enables you to develop raw images and enhance them.
 
 
 %prep
-%setup -q
+echo directory: %{name}-%{version}
+%setup -q -n 'darktable-2.0.0'
 
 # Remove bundled OpenCL headers.
 rm -rf src/external/CL
@@ -78,7 +74,6 @@ pushd %{_target_platform}
 %cmake \
         -DCMAKE_LIBRARY_PATH:PATH=%{_libdir} \
         -DUSE_GEO:BOOLEAN=ON \
-        -DUSE_SQUISH:BOOLEAN=OFF \
         -DCMAKE_BUILD_TYPE:STRING=Release \
         -DBINARY_PACKAGE_BUILD=1 \
         -DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
@@ -124,22 +119,25 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_bindir}/darktable-cli
 %{_bindir}/darktable-cltest
 %{_bindir}/darktable-cmstest
+%{_bindir}/darktable-generate-cache
 %{_bindir}/darktable-viewer
 %{_libdir}/darktable
 %{_datadir}/darktable
 %{_datadir}/applications/darktable.desktop
 %{_datadir}/appdata/darktable.appdata.xml
 %{_datadir}/icons/hicolor/*/apps/darktable*
-%{_datadir}/man/man1/darktable.1.gz
-%{_datadir}/man/man1/darktable-cli.1.gz
+%{_mandir}/man1/darktable*.1.gz
+%{_mandir}/*/man1/darktable*.1.gz
 %{_libexecdir}/darktable/
 
 %changelog
-* Sun Jan 03 2016 Rex Dieter <rdieter@fedoraproject.org> 1.6.9-7
-- rebuild (lensfun)
-
-* Wed Dec 02 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.9-6
+* Sat Jan 09 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.0-1
+- dartable-generate-nopatents-tarball.sh no longer requires since squid is no longer present in Darktable
 - Added %{_libexecdir}/darktable/ to fix bugreport #1278142
+- Added %{_bindir}/darktable-generate-cache
+- Adjusted dependencies to reflect Darktable 2.0 dependencies
+- Replaced %{_datadir}/man/man1/darktable.1.gz and %{_datadir}/man/man1/darktable-cli.1.gz with %{_mandir}/man1/darktable*.1.gz and %{_mandir}/*/man1/darktable*.1.gz
+- Sorted BuildRequire list in alphabetical order
 
 * Sat Nov 07 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.9-5
 - Removed -DCUSTOM_CFLAGS=ON Please read https://bugzilla.redhat.com/show_bug.cgi?id=1278064#c18
