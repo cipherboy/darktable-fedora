@@ -1,3 +1,8 @@
+# osm-gps-map-devel > 1.0 available only in Fedora > 19
+%if 0%{?fedora} > 19
+%global with_osm_gps_map_devel 1
+%endif
+
 Name: darktable
 Version: 2.0.1
 Release: 1%{?dist}
@@ -35,7 +40,7 @@ BuildRequires: libwebp-devel
 BuildRequires: opencl-headers
 BuildRequires: OpenEXR-devel >= 1.6
 BuildRequires: openjpeg-devel
-%if %{with osm-gps-map-devel}
+%if 0%{with_osm_gps_map_devel}
 BuildRequires: osm-gps-map-devel >= 1.0
 %endif
 BuildRequires: perl
@@ -131,6 +136,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Sun Feb 07 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.1-2
+- Fixed Openstreetmap support
+
 * Wed Feb 03 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.1-1
 - Minor update with a lot of fixes. Further infos at https://github.com/darktable-org/darktable/releases/tag/release-2.0.1
 
