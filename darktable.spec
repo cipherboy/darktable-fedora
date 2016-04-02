@@ -40,7 +40,7 @@ BuildRequires: libwebp-devel
 BuildRequires: opencl-headers
 BuildRequires: OpenEXR-devel >= 1.6
 BuildRequires: openjpeg-devel
-%if 0%{with_osm_gps_map_devel}
+%if 0%{?with_osm_gps_map_devel}
 BuildRequires: osm-gps-map-devel >= 1.0
 %endif
 BuildRequires: perl
