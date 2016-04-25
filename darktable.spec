@@ -5,7 +5,7 @@
 
 Name: darktable
 Version: 2.0.3
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 Summary: Utility to organize and develop raw images
 
