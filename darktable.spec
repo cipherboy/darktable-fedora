@@ -28,6 +28,7 @@ BuildRequires: gettext
 BuildRequires: json-glib-devel
 BuildRequires: lcms2-devel
 BuildRequires: lensfun-devel
+BuildRequires: libappstream-glib
 BuildRequires: libcurl-devel >= 7.18.0
 BuildRequires: libgphoto2-devel >= 2.4.5
 BuildRequires: libjpeg-devel
@@ -102,6 +103,7 @@ mkdir -p %{buildroot}%{_libexecdir}/darktable/tools/noise
 rm tools/noise/*.c
 rm tools/noise/Makefile
 cp tools/noise/* %{buildroot}%{_libexecdir}/darktable/tools/noise/
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/darktable.appdata.xml
 
 
 %post
@@ -136,6 +138,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Mon Apr 25 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.3-3
+- Added app-data-validate usage. See https://fedoraproject.org/wiki/Packaging:AppData#app-data-validate_usage
+
 * Sat Apr 02 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.3-2
 - Changed %if 0%{with_osm_gps_map_devel} to %if 0%{?with_osm_gps_map_devel}
 
