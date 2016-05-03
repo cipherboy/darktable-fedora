@@ -4,8 +4,8 @@
 %endif
 
 Name: darktable
-Version: 2.0.3
-Release: 3%{?dist}
+Version: 2.0.4
+Release: 1%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -138,6 +138,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Tue May 03 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.4-1
+- Minor update
+
 * Mon Apr 25 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.3-3
 - Added app-data-validate usage. See https://fedoraproject.org/wiki/Packaging:AppData#app-data-validate_usage
 
