@@ -1,10 +1,10 @@
-# osm-gps-map-devel > 1.0 available only in Fedora > 19
-%if 0%{?fedora} > 19
+# osm-gps-map-devel > 1.0 available only in Fedora
+%if 0%{?fedora}
 %global with_osm_gps_map_devel 1
 %endif
 
 Name: darktable
-Version: 2.0.5
+Version: 2.0.6
 Release: 1%{?dist}
 
 Summary: Utility to organize and develop raw images
@@ -138,6 +138,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Wed Sep 07 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.6-1
+- Minor update
+
 * Tue Jul 05 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.5-1
 - Minor update
 
