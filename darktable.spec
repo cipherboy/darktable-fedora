@@ -52,6 +52,10 @@ BuildRequires: pugixml-devel
 BuildRequires: SDL-devel
 BuildRequires: sqlite-devel
 
+# Concerning rawspeed bundled library, see
+# https://fedorahosted.org/fpc/ticket/550#comment:9
+Provides: bundled(rawspeed)
+
 # uses xmmintrin.h
 ExclusiveArch: x86_64
 
@@ -138,6 +142,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Wed Oct 26 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.7-2
+- Added rawspeed bundled library details
+
 * Tue Oct 25 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.7-1
 - Minor update
 
