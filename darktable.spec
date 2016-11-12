@@ -4,8 +4,8 @@
 %endif
 
 Name: darktable
-Version: 2.0.7
-Release: 2%{?dist}
+Version: 2.2.0.rc0
+Release: 0.1%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -14,15 +14,15 @@ URL: http://www.darktable.org/
 Source0: https://github.com/darktable-org/darktable/releases/download/release-%{version}/darktable-%{version}.tar.xz
 
 BuildRequires: cairo-devel
-BuildRequires: cmake
+BuildRequires: cmake >= 3.0
 BuildRequires: colord-gtk-devel
 BuildRequires: colord-devel
 BuildRequires: cups-devel
 BuildRequires: desktop-file-utils
-BuildRequires: exiv2-devel
+BuildRequires: exiv2-devel >= 0.24
 BuildRequires: flickcurl-devel
 BuildRequires: GraphicsMagick-devel
-BuildRequires: gtk3-devel
+BuildRequires: gtk3-devel >= 3.14
 BuildRequires: intltool
 BuildRequires: gettext
 BuildRequires: json-glib-devel
@@ -40,7 +40,7 @@ BuildRequires: libtiff-devel
 BuildRequires: libwebp-devel
 BuildRequires: opencl-headers
 BuildRequires: OpenEXR-devel >= 1.6
-BuildRequires: openjpeg-devel
+BuildRequires: openjpeg2-devel
 %if 0%{?with_osm_gps_map_devel}
 BuildRequires: osm-gps-map-devel >= 1.0
 %endif
@@ -49,7 +49,6 @@ BuildRequires: pkgconfig >= 0.22
 BuildRequires: po4a
 BuildRequires: /usr/bin/pod2man
 BuildRequires: pugixml-devel
-BuildRequires: SDL-devel
 BuildRequires: sqlite-devel
 
 # Concerning rawspeed bundled library, see
@@ -57,7 +56,7 @@ BuildRequires: sqlite-devel
 Provides: bundled(rawspeed)
 
 # uses xmmintrin.h
-ExclusiveArch: x86_64
+ExclusiveArch: x86_64 aarch64
 
 
 %description
@@ -68,8 +67,10 @@ It also enables you to develop raw images and enhance them.
 
 
 %prep
-echo directory: %{name}-%{version}
-%setup -q -n 'darktable-%{version}'
+# echo directory: %{name}-%{version}
+echo directory: %{name}-2.2.0~rc0
+# %setup -q -n 'darktable-%{version}'
+%setup -q -n 'darktable-2.2.0~rc0'
 
 # Remove bundled OpenCL headers.
 rm -rf src/external/CL
@@ -124,14 +125,16 @@ fi
 gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 %files -f %{name}.lang 
-%license doc/LICENSE
+%license LICENSE
 %doc doc/README doc/AUTHORS doc/TRANSLATORS
 %{_bindir}/darktable
+%{_bindir}/darktable-chart
 %{_bindir}/darktable-cli
 %{_bindir}/darktable-cltest
 %{_bindir}/darktable-cmstest
 %{_bindir}/darktable-generate-cache
-%{_bindir}/darktable-viewer
+%{_bindir}/darktable-rs-identify
+#%{_bindir}/darktable-viewer
 %{_libdir}/darktable
 %{_datadir}/darktable
 %{_datadir}/applications/darktable.desktop
@@ -142,6 +145,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Sun Nov 06 2016 Germano Massullo <germano.massullo@gmail.com> - 2.2.0.rc0-0.1
+- 2.2.0 release candidate
+- Enforced dependencies versions according to 2.2.0 requirements
+
 * Wed Oct 26 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.7-2
 - Added rawspeed bundled library details
 
