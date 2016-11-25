@@ -4,7 +4,7 @@
 %endif
 
 Name: darktable
-Version: 2.2.0.rc0
+Version: 2.2.0.rc1
 Release: 0.1%{?dist}
 
 Summary: Utility to organize and develop raw images
@@ -54,6 +54,7 @@ BuildRequires: sqlite-devel
 # Concerning rawspeed bundled library, see
 # https://fedorahosted.org/fpc/ticket/550#comment:9
 Provides: bundled(rawspeed)
+Provides: bundled(lua)
 
 # uses xmmintrin.h
 ExclusiveArch: x86_64 aarch64
@@ -76,8 +77,10 @@ echo directory: %{name}-2.2.0~rc0
 rm -rf src/external/CL
 sed -i -e 's, \"external/CL/\*\.h\" , ,' src/CMakeLists.txt
 
-# Remove bundled lua
-rm -rf src/external/lua/
+# Remove bundled lua.
+# Line commented because we temporarily enabled bundled Lua while waiting for
+# a compat-lua-52 package
+# rm -rf src/external/lua/
 
 %build
 mkdir %{_target_platform} 
@@ -87,6 +90,7 @@ pushd %{_target_platform}
         -DUSE_GEO:BOOLEAN=ON \
         -DCMAKE_BUILD_TYPE:STRING=Release \
         -DBINARY_PACKAGE_BUILD=1 \
+        -DDONT_USE_INTERNAL_LUA=OFF \
         -DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
         ..
 
@@ -145,6 +149,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Fri Nov 25 2016 Germano Massullo <germano.massullo@gmail.com> - 2.2.0.rc1-0.1
+- 2.2.0 RC1 release candidate
+- Enabled bundled Lua, while discussing the creation of a compat-lua-52 package with Fedora Lua Special Interest Group
+
 * Sun Nov 06 2016 Germano Massullo <germano.massullo@gmail.com> - 2.2.0.rc0-0.1
 - 2.2.0 release candidate
 - Enforced dependencies versions according to 2.2.0 requirements
