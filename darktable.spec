@@ -5,7 +5,7 @@
 
 Name: darktable
 Version: 2.0.7
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -147,6 +147,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Thu Dec 1 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.7-3
+- lensfun update
+
 * Fri Nov 25 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.7-2
 - Enabled bundled Lua, while discussing the creation of a compat-lua-52 package with Fedora Lua Special Interest Group
 
