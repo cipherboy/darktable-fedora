@@ -4,7 +4,7 @@
 %endif
 
 Name: darktable
-Version: 2.2.0.rc1
+Version: 2.2.0.rc2
 Release: 0.1%{?dist}
 
 Summary: Utility to organize and develop raw images
@@ -149,8 +149,11 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Mon Dec 05 2016 Germano Massullo <germano.massullo@gmail.com> - 2.2.0.rc2-0.1
+- 2.2.0 RC2
+
 * Fri Nov 25 2016 Germano Massullo <germano.massullo@gmail.com> - 2.2.0.rc1-0.1
-- 2.2.0 RC1 release candidate
+- 2.2.0 RC1
 - Enabled bundled Lua, while discussing the creation of a compat-lua-52 package with Fedora Lua Special Interest Group
 
 * Sun Nov 06 2016 Germano Massullo <germano.massullo@gmail.com> - 2.2.0.rc0-0.1
