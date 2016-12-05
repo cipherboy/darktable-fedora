@@ -130,7 +130,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 %files -f %{name}.lang 
 %license LICENSE
-%doc doc/README doc/AUTHORS doc/TRANSLATORS
+%doc doc/README # doc/AUTHORS doc/TRANSLATORS
 %{_bindir}/darktable
 %{_bindir}/darktable-chart
 %{_bindir}/darktable-cli
