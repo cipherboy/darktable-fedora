@@ -52,12 +52,6 @@ BuildRequires: pugixml-devel
 BuildRequires: SDL-devel
 BuildRequires: sqlite-devel
 
-# Concerning rawspeed bundled library, see
-# https://fedorahosted.org/fpc/ticket/550#comment:9
-Provides: bundled(rawspeed)
-Provides: bundled(lua)
-
-
 # uses xmmintrin.h
 ExclusiveArch: x86_64
 
@@ -77,10 +71,8 @@ echo directory: %{name}-%{version}
 rm -rf src/external/CL
 sed -i -e 's, \"external/CL/\*\.h\" , ,' src/CMakeLists.txt
 
-# Remove bundled lua.
-# Line commented because we temporarily enabled bundled Lua while waiting for
-# a compat-lua-52 package
-# rm -rf src/external/lua/
+# Remove bundled lua
+rm -rf src/external/lua/
 
 %build
 mkdir %{_target_platform} 
@@ -90,7 +82,6 @@ pushd %{_target_platform}
         -DUSE_GEO:BOOLEAN=ON \
         -DCMAKE_BUILD_TYPE:STRING=Release \
         -DBINARY_PACKAGE_BUILD=1 \
-        -DDONT_USE_INTERNAL_LUA=OFF \
         -DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
         ..
 
@@ -147,9 +138,6 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
-* Fri Nov 25 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.7-2
-- Enabled bundled Lua, while discussing the creation of a compat-lua-52 package with Fedora Lua Special Interest Group
-
 * Tue Oct 25 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.7-1
 - Minor update
 
