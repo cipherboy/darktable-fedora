@@ -147,7 +147,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
-* Mon Jan 02 2016 Germano Massullo <germano.massullo@gmail.com> - 2.2.1-1
+* Mon Jan 02 2017 Germano Massullo <germano.massullo@gmail.com> - 2.2.1-1
 - 2.2.1 release
 
 * Fri Dec 23 2016 Germano Massullo <germano.massullo@gmail.com> - 2.2.0-1
