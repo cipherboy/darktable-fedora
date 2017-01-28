@@ -4,7 +4,7 @@
 %endif
 
 Name: darktable
-Version: 2.2.1
+Version: 2.2.2
 Release: 1%{?dist}
 
 Summary: Utility to organize and develop raw images
@@ -147,6 +147,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Sat Jan 28 2017 Germano Massullo <germano.massullo@gmail.com> - 2.2.2-1
+- 2.2.2 release 
+
 * Mon Jan 02 2017 Germano Massullo <germano.massullo@gmail.com> - 2.2.1-1
 - 2.2.1 release
 
