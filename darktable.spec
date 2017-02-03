@@ -14,7 +14,11 @@ URL: http://www.darktable.org/
 Source0: https://github.com/darktable-org/darktable/releases/download/release-%{version}/darktable-%{version}.tar.xz
 
 BuildRequires: cairo-devel
+%if 0%{?el7}
+BuildRequires: cmake3
+%else
 BuildRequires: cmake >= 3.0
+%endif
 BuildRequires: colord-gtk-devel
 BuildRequires: colord-devel
 BuildRequires: cups-devel
