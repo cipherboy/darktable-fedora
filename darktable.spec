@@ -5,7 +5,7 @@
 
 Name: darktable
 Version: 2.2.4
-Release: 3%{?dist}
+Release: 4%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -93,7 +93,6 @@ pushd %{_target_platform}
         -DCMAKE_BUILD_TYPE:STRING=Release \
         -DBINARY_PACKAGE_BUILD=1 \
         -DDONT_USE_INTERNAL_LUA=OFF \
-        -DUSE_OPENCL=OFF \
         -DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
         ..
 
@@ -152,6 +151,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Wed May 10 2017 Germano Massullo <germano.massullo@gmail.com> - 2.2.4-4
+- Resumed OpenCL support
+
 * Fri May 05 2017 Jared Smith <jsmith@fedoraproject.org> - 2.2.4-3
 - Turn off OpenCL support, as it is causing a segfault on start
 
