@@ -5,7 +5,7 @@
 
 Name: darktable
 Version: 2.2.5
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -136,11 +136,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_bindir}/darktable
 %{_bindir}/darktable-chart
 %{_bindir}/darktable-cli
-#%{_bindir}/darktable-cltest
+%{_bindir}/darktable-cltest
 %{_bindir}/darktable-cmstest
 %{_bindir}/darktable-generate-cache
 %{_bindir}/darktable-rs-identify
-#%{_bindir}/darktable-viewer
 %{_libdir}/darktable
 %{_datadir}/darktable
 %{_datadir}/applications/darktable.desktop
@@ -151,6 +150,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Mon May 29 2017 Germano Massullo <germano.massullo@gmail.com> - 2.2.5-2
+- de-commented %{_bindir}/darktable-cltest line
+
 * Mon May 29 2017 Germano Massullo <germano.massullo@gmail.com> - 2.2.5-1
 - 2.2.5 release
 
