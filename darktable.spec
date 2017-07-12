@@ -48,7 +48,7 @@ BuildRequires: openjpeg2-devel
 %if 0%{?with_osm_gps_map_devel}
 BuildRequires: osm-gps-map-devel >= 1.0
 %endif
-BuildRequires: perl
+BuildRequires: perl-interpreter
 BuildRequires: pkgconfig >= 0.22
 BuildRequires: po4a
 BuildRequires: /usr/bin/pod2man
