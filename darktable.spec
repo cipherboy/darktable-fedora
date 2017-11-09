@@ -5,7 +5,7 @@
 
 Name: darktable
 Version: 2.2.5
-Release: 4%{?dist}
+Release: 5%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -87,6 +87,16 @@ sed -i -e 's, \"external/CL/\*\.h\" , ,' src/CMakeLists.txt
 %build
 mkdir %{_target_platform} 
 pushd %{_target_platform} 
+%if 0%{?el7}
+%cmake3 \
+        -DCMAKE_LIBRARY_PATH:PATH=%{_libdir} \
+        -DUSE_GEO:BOOLEAN=ON \
+        -DCMAKE_BUILD_TYPE:STRING=Release \
+        -DBINARY_PACKAGE_BUILD=1 \
+        -DDONT_USE_INTERNAL_LUA=OFF \
+        -DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
+        ..
+%else
 %cmake \
         -DCMAKE_LIBRARY_PATH:PATH=%{_libdir} \
         -DUSE_GEO:BOOLEAN=ON \
@@ -95,6 +105,7 @@ pushd %{_target_platform}
         -DDONT_USE_INTERNAL_LUA=OFF \
         -DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
         ..
+%endif
 
 
 make %{?_smp_mflags} VERBOSE=1
@@ -150,6 +161,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Thu Nov 09 2017 Germano Massullo <germano.massullo@gmail.com> - 2.2.5-5
+- added cmake3 EPEL7 macro
+
 * Wed Aug 02 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.2.5-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
 
