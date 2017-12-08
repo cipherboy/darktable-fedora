@@ -1,11 +1,6 @@
-# osm-gps-map-devel > 1.0 available only in Fedora
-%if 0%{?fedora}
-%global with_osm_gps_map_devel 1
-%endif
-
 Name: darktable
-Version: 2.2.5
-Release: 5%{?dist}
+Version: 2.4.0.rc0
+Release: 1%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -14,10 +9,11 @@ URL: http://www.darktable.org/
 Source0: https://github.com/darktable-org/darktable/releases/download/release-%{version}/darktable-%{version}.tar.xz
 
 BuildRequires: cairo-devel
+BuildRequires: clang >= 3.4
 %if 0%{?el7}
-BuildRequires: cmake3
+BuildRequires: cmake3 >= 3.1
 %else
-BuildRequires: cmake >= 3.0
+BuildRequires: cmake >= 3.1
 %endif
 BuildRequires: colord-gtk-devel
 BuildRequires: colord-devel
@@ -25,6 +21,7 @@ BuildRequires: cups-devel
 BuildRequires: desktop-file-utils
 BuildRequires: exiv2-devel >= 0.24
 BuildRequires: flickcurl-devel
+BuildRequires: gcc >= 4.9
 BuildRequires: GraphicsMagick-devel
 BuildRequires: gtk3-devel >= 3.14
 BuildRequires: intltool
@@ -45,16 +42,14 @@ BuildRequires: libwebp-devel
 BuildRequires: opencl-headers
 BuildRequires: OpenEXR-devel >= 1.6
 BuildRequires: openjpeg2-devel
-%if 0%{?with_osm_gps_map_devel}
 BuildRequires: osm-gps-map-devel >= 1.0
-%endif
 BuildRequires: perl-interpreter
 BuildRequires: pkgconfig >= 0.22
 BuildRequires: po4a
 BuildRequires: /usr/bin/pod2man
 BuildRequires: pugixml-devel
 BuildRequires: sqlite-devel
-
+BuildRequires: zlib-devel
 # Concerning rawspeed bundled library, see
 # https://fedorahosted.org/fpc/ticket/550#comment:9
 Provides: bundled(rawspeed)
@@ -72,8 +67,10 @@ It also enables you to develop raw images and enhance them.
 
 
 %prep
-echo directory: %{name}-%{version}
-%setup -q -n 'darktable-%{version}'
+# echo directory: %{name}-%{version}
+echo directory: darktable-2.4.0~rc0
+# %setup -q -n 'darktable-%{version}'
+%setup -q -n 'darktable-2.4.0~rc0'
 
 # Remove bundled OpenCL headers.
 rm -rf src/external/CL
@@ -161,6 +158,12 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Mon Dec 04 2017 Germano Massullo <germano.massullo@gmail.com> - 2.4.0.rc0-0.1
+- 2.4 release candidate 1
+- added BuildRequires gcc and clang minimum version requirements
+- added BuildRequires: zlib-devel
+- enabled osm-gps-map-devel for EPEL7, because version 1.x reached that repository too
+
 * Thu Nov 09 2017 Germano Massullo <germano.massullo@gmail.com> - 2.2.5-5
 - added cmake3 EPEL7 macro
 
