@@ -1,6 +1,6 @@
 Name: darktable
 Version: 2.4.0.rc0
-Release: 1%{?dist}
+Release: 0.2%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -105,15 +105,15 @@ pushd %{_target_platform}
 %endif
 
 
-make %{?_smp_mflags} VERBOSE=1
+%make_build VERBOSE=1
 popd
 pushd tools/noise
-make %{?_smp_mflags}
+%make_build
 
 
 %install
 pushd %{_target_platform} 
-make install DESTDIR=%{buildroot}
+%make_install
 popd
 find %{buildroot} -name '*.la' -exec rm -f {} ';'
 %find_lang %{name}
@@ -158,6 +158,11 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Sun Dec 10 2017 Germano Massullo <germano.massullo@gmail.com> - 2.4.0.rc0-0.2
+- replaced make %{?_smp_mflags} with %make_build
+- replaced make install DESTDIR=%{buildroot} with %make_install
+- fixed previous wrong Fedora release tag (it was 1 instead of 0.1)
+
 * Mon Dec 04 2017 Germano Massullo <germano.massullo@gmail.com> - 2.4.0.rc0-0.1
 - 2.4 release candidate 1
 - added BuildRequires gcc and clang minimum version requirements
