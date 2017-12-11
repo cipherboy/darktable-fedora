@@ -1,6 +1,6 @@
 Name: darktable
-Version: 2.4.0.rc0
-Release: 0.2%{?dist}
+Version: 2.4.0.rc1
+Release: 0.1%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -158,6 +158,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Mon Dec 11 2017 Germano Massullo <germano.massullo@gmail.com> - 2.4.0.rc1-0.1
+- 2.4.0.rc1 release
+
 * Sun Dec 10 2017 Germano Massullo <germano.massullo@gmail.com> - 2.4.0.rc0-0.2
 - replaced make %{?_smp_mflags} with %make_build
 - replaced make install DESTDIR=%{buildroot} with %make_install
