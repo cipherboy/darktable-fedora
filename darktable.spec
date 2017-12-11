@@ -68,9 +68,9 @@ It also enables you to develop raw images and enhance them.
 
 %prep
 # echo directory: %{name}-%{version}
-echo directory: darktable-2.4.0~rc0
+echo directory: darktable-2.4.0~rc1
 # %setup -q -n 'darktable-%{version}'
-%setup -q -n 'darktable-2.4.0~rc0'
+%setup -q -n 'darktable-2.4.0~rc1'
 
 # Remove bundled OpenCL headers.
 rm -rf src/external/CL
