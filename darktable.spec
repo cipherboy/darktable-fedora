@@ -1,6 +1,6 @@
 Name: darktable
 Version: 2.4.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -156,6 +156,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Sun Dec 24 2017 Germano Massullo <germano.massullo@gmail.com> - 2.4.0-2
+- rebuilt as precaution to have a Fedora release number higher than the 2.4.0.rc0-1, that was entered by mistake
+
 * Sun Dec 24 2017 Germano Massullo <germano.massullo@gmail.com> - 2.4.0-1
 - 2.4.0 release
 
