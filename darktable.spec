@@ -1,6 +1,6 @@
 Name: darktable
-Version: 2.4.0.rc1
-Release: 0.1%{?dist}
+Version: 2.4.0
+Release: 1%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -67,10 +67,8 @@ It also enables you to develop raw images and enhance them.
 
 
 %prep
-# echo directory: %{name}-%{version}
-echo directory: darktable-2.4.0~rc1
-# %setup -q -n 'darktable-%{version}'
-%setup -q -n 'darktable-2.4.0~rc1'
+echo directory: %{name}-%{version}
+%setup -q -n 'darktable-%{version}'
 
 # Remove bundled OpenCL headers.
 rm -rf src/external/CL
@@ -158,6 +156,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Sun Dec 24 2017 Germano Massullo <germano.massullo@gmail.com> - 2.4.0-1
+- 2.4.0 release
+
 * Mon Dec 11 2017 Germano Massullo <germano.massullo@gmail.com> - 2.4.0.rc1-0.1
 - 2.4.0.rc1 release
 
