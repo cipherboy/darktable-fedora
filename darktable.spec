@@ -25,7 +25,8 @@ BuildRequires: gcc >= 4.9
 BuildRequires: GraphicsMagick-devel
 BuildRequires: gtk3-devel >= 3.14
 BuildRequires: intltool
-BuildRequires: iso-codes >= 3.66 # dependency not mandatory, just optional / recommended
+# iso-codes dependency not mandatory, just optional / recommended
+BuildRequires: iso-codes >= 3.66
 BuildRequires: gettext
 BuildRequires: json-glib-devel
 BuildRequires: lcms2-devel
@@ -52,7 +53,8 @@ BuildRequires: pugixml-devel
 BuildRequires: sqlite-devel
 BuildRequires: zlib-devel
 
-Requires: iso-codes >= 3.66 # dependency not mandatory, just optional / recommended
+# iso-codes dependency not mandatory, just optional / recommended
+Requires: iso-codes >= 3.66
 
 # Concerning rawspeed bundled library, see
 # https://fedorahosted.org/fpc/ticket/550#comment:9
