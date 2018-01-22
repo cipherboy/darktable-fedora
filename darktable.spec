@@ -144,7 +144,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 %files -f %{name}.lang 
 %license LICENSE
-%doc doc/README
+%doc doc/README.md
 %{_bindir}/darktable
 %{_bindir}/darktable-chart
 %{_bindir}/darktable-cli
@@ -165,6 +165,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 * Mon Jan 22 2018 Germano Massullo <germano.massullo@gmail.com> - 2.4.1-1
 - 2.4.1 release
 - added iso-codes library requirement
+- added .md extension to README file
 
 * Sun Dec 24 2017 Germano Massullo <germano.massullo@gmail.com> - 2.4.0-2
 - rebuilt as precaution to have a Fedora release number higher than the 2.4.0.rc0-1, that was entered by mistake
