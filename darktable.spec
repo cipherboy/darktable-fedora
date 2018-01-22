@@ -1,6 +1,6 @@
 Name: darktable
-Version: 2.4.0
-Release: 2%{?dist}
+Version: 2.4.1
+Release: 1%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -25,6 +25,7 @@ BuildRequires: gcc >= 4.9
 BuildRequires: GraphicsMagick-devel
 BuildRequires: gtk3-devel >= 3.14
 BuildRequires: intltool
+BuildRequires: iso-codes >= 3.66 # dependency not mandatory, just optional / recommended
 BuildRequires: gettext
 BuildRequires: json-glib-devel
 BuildRequires: lcms2-devel
@@ -50,6 +51,9 @@ BuildRequires: /usr/bin/pod2man
 BuildRequires: pugixml-devel
 BuildRequires: sqlite-devel
 BuildRequires: zlib-devel
+
+Requires: iso-codes >= 3.66 # dependency not mandatory, just optional / recommended
+
 # Concerning rawspeed bundled library, see
 # https://fedorahosted.org/fpc/ticket/550#comment:9
 Provides: bundled(rawspeed)
@@ -156,6 +160,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Mon Jan 22 2018 Germano Massullo <germano.massullo@gmail.com> - 2.4.1-1
+- 2.4.1 release
+- added iso-codes library requirement
+
 * Sun Dec 24 2017 Germano Massullo <germano.massullo@gmail.com> - 2.4.0-2
 - rebuilt as precaution to have a Fedora release number higher than the 2.4.0.rc0-1, that was entered by mistake
 
