@@ -1,6 +1,6 @@
 Name: darktable
 Version: 2.4.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -21,7 +21,7 @@ BuildRequires: cups-devel
 BuildRequires: desktop-file-utils
 BuildRequires: exiv2-devel >= 0.24
 BuildRequires: flickcurl-devel
-BuildRequires: gcc >= 4.9
+BuildRequires: gcc >= 5.0
 BuildRequires: GraphicsMagick-devel
 BuildRequires: gtk3-devel >= 3.14
 BuildRequires: intltool
@@ -162,6 +162,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Tue Jan 23 2018 Germano Massullo <germano.massullo@gmail.com> - 2.4.1-2
+- increased gcc minimum required version
+
 * Mon Jan 22 2018 Germano Massullo <germano.massullo@gmail.com> - 2.4.1-1
 - 2.4.1 release
 - added iso-codes library requirement
