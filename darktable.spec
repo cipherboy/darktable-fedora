@@ -1,6 +1,6 @@
 Name: darktable
 Version: 2.4.1
-Release: 3%{?dist}
+Release: 4%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -162,6 +162,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Fri Feb 09 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 2.4.1-4
+- Escape macros in %%changelog
+
 * Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.4.1-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
@@ -183,8 +186,8 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 - 2.4.0.rc1 release
 
 * Sun Dec 10 2017 Germano Massullo <germano.massullo@gmail.com> - 2.4.0.rc0-0.2
-- replaced make %{?_smp_mflags} with %make_build
-- replaced make install DESTDIR=%{buildroot} with %make_install
+- replaced make %%{?_smp_mflags} with %%make_build
+- replaced make install DESTDIR=%%{buildroot} with %%make_install
 - fixed previous wrong Fedora release tag (it was 1 instead of 0.1)
 
 * Mon Dec 04 2017 Germano Massullo <germano.massullo@gmail.com> - 2.4.0.rc0-0.1
@@ -203,7 +206,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
 * Mon May 29 2017 Germano Massullo <germano.massullo@gmail.com> - 2.2.5-2
-- de-commented %{_bindir}/darktable-cltest line
+- de-commented %%{_bindir}/darktable-cltest line
 
 * Mon May 29 2017 Germano Massullo <germano.massullo@gmail.com> - 2.2.5-1
 - 2.2.5 release
@@ -268,7 +271,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 - Added app-data-validate usage. See https://fedoraproject.org/wiki/Packaging:AppData#app-data-validate_usage
 
 * Sat Apr 02 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.3-2
-- Changed %if 0%{with_osm_gps_map_devel} to %if 0%{?with_osm_gps_map_devel}
+- Changed %%if 0%%{with_osm_gps_map_devel} to %%if 0%%{?with_osm_gps_map_devel}
 
 * Fri Apr 01 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.3-1
 - Minor update
@@ -287,10 +290,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 * Sat Jan 09 2016 Germano Massullo <germano.massullo@gmail.com> - 2.0.0-1
 - dartable-generate-nopatents-tarball.sh no longer requires since squid is no longer present in Darktable
-- Added %{_libexecdir}/darktable/ to fix bugreport #1278142
-- Added %{_bindir}/darktable-generate-cache
+- Added %%{_libexecdir}/darktable/ to fix bugreport #1278142
+- Added %%{_bindir}/darktable-generate-cache
 - Adjusted dependencies to reflect Darktable 2.0 dependencies
-- Replaced %{_datadir}/man/man1/darktable.1.gz and %{_datadir}/man/man1/darktable-cli.1.gz with %{_mandir}/man1/darktable*.1.gz and %{_mandir}/*/man1/darktable*.1.gz
+- Replaced %%{_datadir}/man/man1/darktable.1.gz and %%{_datadir}/man/man1/darktable-cli.1.gz with %%{_mandir}/man1/darktable*.1.gz and %%{_mandir}/*/man1/darktable*.1.gz
 - Sorted BuildRequire list in alphabetical order
 
 * Sat Nov 07 2015 Germano Massullo <germano.massullo@gmail.com> - 1.6.9-5
@@ -364,8 +367,8 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 * Wed Feb 04 2015 Edouard Bourguignon <madko@linuxed.net> - 1.6.2-2
 - Aesthetic changes (useless spaces)
-- Use mkdir %{_target_platform} instead of buildFedora
-- Consistence use of %var instead of $VAR
+- Use mkdir %%{_target_platform} instead of buildFedora
+- Consistence use of %%var instead of $VAR
  
 * Mon Feb 02 2015 Edouard Bourguignon <madko@linuxed.net> - 1.6.2-1
 - Darktable 1.6.2
