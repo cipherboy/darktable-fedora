@@ -1,6 +1,6 @@
 Name: darktable
 Version: 2.4.1
-Release: 4%{?dist}
+Release: 5%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -41,6 +41,10 @@ BuildRequires: libsecret-devel
 BuildRequires: libsoup-devel
 BuildRequires: libtiff-devel
 BuildRequires: libwebp-devel
+# Fedora uses Fedora lua, EPEL7 uses bundled lua
+%if 0%{?fedora}
+BuildRequires: lua-devel >= 5.3
+%endif
 BuildRequires: opencl-headers
 BuildRequires: OpenEXR-devel >= 1.6
 BuildRequires: openjpeg2-devel
@@ -59,7 +63,9 @@ Requires: iso-codes >= 3.66
 # Concerning rawspeed bundled library, see
 # https://fedorahosted.org/fpc/ticket/550#comment:9
 Provides: bundled(rawspeed)
+%if 0%{?el7}
 Provides: bundled(lua)
+%endif
 
 # uses xmmintrin.h
 ExclusiveArch: x86_64 aarch64
@@ -80,14 +86,15 @@ echo directory: %{name}-%{version}
 rm -rf src/external/CL
 sed -i -e 's, \"external/CL/\*\.h\" , ,' src/CMakeLists.txt
 
-# Remove bundled lua.
-# Line commented because we temporarily enabled bundled Lua while waiting for
-# a compat-lua-52 package
-# rm -rf src/external/lua/
+# Remove bundled lua on Fedora
+%if 0%{?fedora}
+rm -rf src/external/lua/
+%endif
 
 %build
 mkdir %{_target_platform} 
-pushd %{_target_platform} 
+pushd %{_target_platform}
+# bundled lua is enabled on EPEL7
 %if 0%{?el7}
 %cmake3 \
         -DCMAKE_LIBRARY_PATH:PATH=%{_libdir} \
@@ -103,7 +110,7 @@ pushd %{_target_platform}
         -DUSE_GEO:BOOLEAN=ON \
         -DCMAKE_BUILD_TYPE:STRING=Release \
         -DBINARY_PACKAGE_BUILD=1 \
-        -DDONT_USE_INTERNAL_LUA=OFF \
+        -DDONT_USE_INTERNAL_LUA=ON \
         -DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
         ..
 %endif
@@ -162,6 +169,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Thu Mar 08 2018 Germano Massullo <germano.massullo@gmail.com> - 2.4.1-5
+- on Fedora: replaced bundled lua with Fedora lua
+
 * Fri Feb 09 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 2.4.1-4
 - Escape macros in %%changelog
 
