@@ -1,6 +1,6 @@
 Name: darktable
 Version: 2.4.1
-Release: 5%{?dist}
+Release: 6%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -19,6 +19,11 @@ BuildRequires: colord-gtk-devel
 BuildRequires: colord-devel
 BuildRequires: cups-devel
 BuildRequires: desktop-file-utils
+# EPEL7 does not have a recent GCC
+%if 0%{?el7}
+BuildRequires: devtoolset-7-toolchain
+BuildRequires: devtoolset-7-libatomic-devel
+%endif
 BuildRequires: exiv2-devel >= 0.24
 BuildRequires: flickcurl-devel
 BuildRequires: gcc >= 5.0
@@ -26,7 +31,9 @@ BuildRequires: GraphicsMagick-devel
 BuildRequires: gtk3-devel >= 3.14
 BuildRequires: intltool
 # iso-codes dependency not mandatory, just optional / recommended
+%if 0%{?fedora}
 BuildRequires: iso-codes >= 3.66
+%endif
 BuildRequires: gettext
 BuildRequires: json-glib-devel
 BuildRequires: lcms2-devel
@@ -92,6 +99,9 @@ rm -rf src/external/lua/
 %endif
 
 %build
+%if 0%{?el7}
+. /opt/rh/devtoolset-7/enable
+%endif
 mkdir %{_target_platform} 
 pushd %{_target_platform}
 # bundled lua is enabled on EPEL7
@@ -169,6 +179,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Tue Mar 13 2018 Germano Massullo <germano.massullo@gmail.com> - 2.4.1-6
+- added devtoolset for EPEL7 needs
+
 * Thu Mar 08 2018 Germano Massullo <germano.massullo@gmail.com> - 2.4.1-5
 - on Fedora: replaced bundled lua with Fedora lua
 
