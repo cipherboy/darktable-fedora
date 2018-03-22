@@ -1,6 +1,6 @@
 Name: darktable
-Version: 2.4.1
-Release: 6%{?dist}
+Version: 2.4.2
+Release: 1%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -179,6 +179,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Thu Mar 22 2018 Germano Massullo <germano.massullo@gmail.com> - 2.4.1-7
+- 2.4.2 release
+
 * Tue Mar 13 2018 Germano Massullo <germano.massullo@gmail.com> - 2.4.1-6
 - added devtoolset for EPEL7 needs
 
