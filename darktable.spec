@@ -132,8 +132,6 @@ pushd %{_target_platform}
 
 %make_build VERBOSE=1
 popd
-pushd tools/noise
-%make_build
 
 
 %install
@@ -145,7 +143,6 @@ find %{buildroot} -name '*.la' -exec rm -f {} ';'
 rm -rf %{buildroot}%{_datadir}/doc/darktable
 mkdir -p %{buildroot}%{_libexecdir}/darktable/tools/noise
 rm tools/noise/*.c
-rm tools/noise/Makefile
 cp tools/noise/* %{buildroot}%{_libexecdir}/darktable/tools/noise/
 appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/darktable.appdata.xml
 
@@ -185,6 +182,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %changelog
 * Wed Apr 25 2018 Germano Massullo <germano.massullo@gmail.com> - 2.4.3-1
 - 2.4.3 release
+- removed noise tools MakeFile because it is now included in regular CMake system
 
 * Thu Apr 19 2018 Germano Massullo <germano.massullo@gmail.com> - 2.4.2-2
 - forced Requires: iso-codes for Fedora only
