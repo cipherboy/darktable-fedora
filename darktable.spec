@@ -1,6 +1,6 @@
 Name: darktable
 Version: 2.4.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -180,6 +180,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Thu May 31 2018 Germano Massullo <germano.massullo@gmail.com> - 2.4.3-2
+- rebuilt due osm-gps-map update
+
 * Wed Apr 25 2018 Germano Massullo <germano.massullo@gmail.com> - 2.4.3-1
 - 2.4.3 release
 - removed noise tools MakeFile because it is now included in regular CMake system
