@@ -1,6 +1,6 @@
 Name: darktable
-Version: 2.4.3
-Release: 3%{?dist}
+Version: 2.4.4
+Release: 1%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -180,6 +180,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/
 
 %changelog
+* Thu Jun 07 2018 Caterpillar <germano.massullo@gmail.com> - 2.4.4-1
+- 2.4.4 release
+
 * Sat Jun 02 2018 Germano Massullo <germano.massullo@gmail.com> - 2.4.3-3
 - rebuilt due osm-gps-map update
 
