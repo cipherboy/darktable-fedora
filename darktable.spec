@@ -1,6 +1,6 @@
 Name: darktable
 Version: 2.4.4
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -88,6 +88,30 @@ it manages your digital negatives in a database and lets you view them
 through a zoom-able light-table.
 It also enables you to develop raw images and enhance them.
 
+%package tools-noise
+Summary:        The noise profiling tools to support new cameras
+Requires:       imagemagick
+Requires:       gnuplot
+
+%description tools-noise
+darktable is a virtual lighttable and darkroom for photographers: it manages
+your digital negatives in a database and lets you view them through a zoomable
+lighttable. it also enables you to develop raw images and enhance them.
+
+%package tools-basecurve
+Summary:        The basecurve tool from tools/basecurve/
+Requires:       imagemagick
+Requires:       dcraw
+Requires:       exiftool
+
+%description tools-basecurve
+darktable is a virtual lighttable and darkroom for photographers: it manages
+your digital negatives in a database and lets you view them through a zoomable
+lighttable. it also enables you to develop raw images and enhance them.
+
+This package provides the basecurve tool from tools/basecurve/.
+Another option to solve the same problem might be the darktable-chart module
+from the darktable package.
 
 %prep
 echo directory: %{name}-%{version}
@@ -116,6 +140,7 @@ pushd %{_target_platform}
         -DCMAKE_BUILD_TYPE:STRING=Release \
         -DBINARY_PACKAGE_BUILD=1 \
         -DDONT_USE_INTERNAL_LUA=OFF \
+        -DBUILD_NOISE_TOOLS=ON \
         -DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
         ..
 %else
@@ -125,6 +150,7 @@ pushd %{_target_platform}
         -DCMAKE_BUILD_TYPE:STRING=Release \
         -DBINARY_PACKAGE_BUILD=1 \
         -DDONT_USE_INTERNAL_LUA=ON \
+        -DBUILD_NOISE_TOOLS=ON \
         -DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
         ..
 %endif
@@ -141,9 +167,6 @@ popd
 find %{buildroot} -name '*.la' -exec rm -f {} ';'
 %find_lang %{name}
 rm -rf %{buildroot}%{_datadir}/doc/darktable
-mkdir -p %{buildroot}%{_libexecdir}/darktable/tools/noise
-rm tools/noise/*.c
-cp tools/noise/* %{buildroot}%{_libexecdir}/darktable/tools/noise/
 appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/darktable.appdata.xml
 
 
@@ -179,7 +202,18 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_mandir}/*/man1/darktable*.1.gz
 %{_libexecdir}/darktable/
 
+%files tools-noise
+%dir %{_libexecdir}/darktable
+%dir %{_libexecdir}/darktable/tools
+%{_libexecdir}/darktable/tools/darktable-gen-noiseprofile
+%{_libexecdir}/darktable/tools/darktable-noiseprofile
+%{_libexecdir}/darktable/tools/profiling-shot.xmp
+%{_libexecdir}/darktable/tools/subr.sh
+
 %changelog
+* Wed Jul 18 2018 Germano Massullo <germano.massullo@gmail.com> - 2.4.4-3
+- added noise tools and basecurve tools subpackages
+
 * Thu Jul 12 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.4.4-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
