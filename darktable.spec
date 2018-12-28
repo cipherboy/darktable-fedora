@@ -1,6 +1,6 @@
 Name: darktable
 Version: 2.6.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -9,11 +9,11 @@ URL: http://www.darktable.org/
 Source0: https://github.com/darktable-org/darktable/releases/download/release-%{version}/darktable-%{version}.tar.xz
 
 BuildRequires: cairo-devel
-BuildRequires: clang >= 3.4
+BuildRequires: clang >= 3.9
 %if 0%{?el7}
-BuildRequires: cmake3 >= 3.1
+BuildRequires: cmake3 >= 3.4
 %else
-BuildRequires: cmake >= 3.1
+BuildRequires: cmake >= 3.4
 %endif
 BuildRequires: colord-gtk-devel
 BuildRequires: colord-devel
@@ -81,6 +81,7 @@ Provides: bundled(lua)
 # uses xmmintrin.h
 ExclusiveArch: x86_64 aarch64 ppc64le
 
+
 %description
 Darktable is a virtual light-table and darkroom for photographers:
 it manages your digital negatives in a database and lets you view them
@@ -114,7 +115,8 @@ from the darktable package.
 
 %prep
 echo directory: %{name}-%{version}
-%setup -q -n 'darktable-%{version}'
+#%%setup -q -n 'darktable-%%{version}'
+%setup -q -n 'darktable-2.6.0~rc2'
 
 # Remove bundled OpenCL headers.
 rm -rf src/external/CL
@@ -141,9 +143,10 @@ pushd %{_target_platform}
         -DDONT_USE_INTERNAL_LUA=OFF \
         -DBUILD_NOISE_TOOLS=ON \
         -DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
-%ifarch ppc64le
+        -DRAWSPEED_ENABLE_LTO=ON \
+        %ifarch ppc64le
         -DUSE_OPENCL=OFF \
-%endif
+        %endif
         ..
 %else
 %cmake \
@@ -154,9 +157,10 @@ pushd %{_target_platform}
         -DDONT_USE_INTERNAL_LUA=ON \
         -DBUILD_NOISE_TOOLS=ON \
         -DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
-%ifarch ppc64le
+        -DRAWSPEED_ENABLE_LTO=ON \
+        %ifarch ppc64le
         -DUSE_OPENCL=OFF \
-%endif
+        %endif
         ..
 %endif
 
@@ -218,6 +222,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/tools/subr.sh
 
 %changelog
+* Fri Dec 28 2018 Germano Massullo <germano@germanomassullo.org> - 2.6.0-2
+- changed cmake and clang minimum version requirement
+
 * Fri Dec 28 2018 Pete Walter <pwalter@fedoraproject.org> - 2.6.0-1
 - Update to 2.6.0
 - Enable ppc64le build (#1660807)
