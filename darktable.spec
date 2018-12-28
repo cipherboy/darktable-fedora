@@ -115,7 +115,7 @@ from the darktable package.
 
 %prep
 echo directory: %{name}-%{version}
-%setup -q -n 'darktable-%%{version}'
+%setup -q -n 'darktable-%{version}'
 
 # Remove bundled OpenCL headers.
 rm -rf src/external/CL
