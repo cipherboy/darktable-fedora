@@ -79,8 +79,7 @@ Provides: bundled(lua)
 %endif
 
 # uses xmmintrin.h
-ExclusiveArch: x86_64 aarch64
-
+ExclusiveArch: x86_64 aarch64 ppc64le
 
 %description
 Darktable is a virtual light-table and darkroom for photographers:
@@ -142,6 +141,9 @@ pushd %{_target_platform}
         -DDONT_USE_INTERNAL_LUA=OFF \
         -DBUILD_NOISE_TOOLS=ON \
         -DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
+%ifarch ppc64le
+        -DUSE_OPENCL=OFF \
+%endif
         ..
 %else
 %cmake \
@@ -152,6 +154,9 @@ pushd %{_target_platform}
         -DDONT_USE_INTERNAL_LUA=ON \
         -DBUILD_NOISE_TOOLS=ON \
         -DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
+%ifarch ppc64le
+        -DUSE_OPENCL=OFF \
+%endif
         ..
 %endif
 
@@ -189,7 +194,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_bindir}/darktable
 %{_bindir}/darktable-chart
 %{_bindir}/darktable-cli
+%ifnarch ppc64le
 %{_bindir}/darktable-cltest
+%endif
 %{_bindir}/darktable-cmstest
 %{_bindir}/darktable-generate-cache
 %{_bindir}/darktable-rs-identify
@@ -213,6 +220,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %changelog
 * Fri Dec 28 2018 Pete Walter <pwalter@fedoraproject.org> - 2.6.0-1
 - Update to 2.6.0
+- Enable ppc64le build (#1660807)
 
 * Wed Jul 18 2018 Germano Massullo <germano.massullo@gmail.com> - 2.4.4-3
 - added noise tools and basecurve tools subpackages
