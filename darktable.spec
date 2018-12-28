@@ -1,6 +1,6 @@
 Name: darktable
-Version: 2.4.4
-Release: 3%{?dist}
+Version: 2.6.0
+Release: 1%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -211,6 +211,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %{_libexecdir}/darktable/tools/subr.sh
 
 %changelog
+* Fri Dec 28 2018 Pete Walter <pwalter@fedoraproject.org> - 2.6.0-1
+- Update to 2.6.0
+
 * Wed Jul 18 2018 Germano Massullo <germano.massullo@gmail.com> - 2.4.4-3
 - added noise tools and basecurve tools subpackages
 
