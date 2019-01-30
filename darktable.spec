@@ -1,6 +1,6 @@
 Name: darktable
 Version: 2.6.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -207,6 +207,9 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/darktable
 %{_libexecdir}/darktable/tools/subr.sh
 
 %changelog
+* Wed Jan 30 2019 Rex Dieter <rdieter@fedoraproject.org> - 2.6.0-3
+- rebuild (exiv2)
+
 * Fri Dec 28 2018 Germano Massullo <germano@germanomassullo.org> - 2.6.0-2
 - changed cmake and clang minimum version requirement
 
