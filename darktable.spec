@@ -1,6 +1,6 @@
 Name: darktable
 Version: 2.6.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -207,6 +207,9 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/darktable
 %{_libexecdir}/darktable/tools/subr.sh
 
 %changelog
+* Thu Jan 31 2019 Fedora Release Engineering <releng@fedoraproject.org> - 2.6.0-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Wed Jan 30 2019 Rex Dieter <rdieter@fedoraproject.org> - 2.6.0-3
 - rebuild (exiv2)
 
