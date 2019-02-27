@@ -157,6 +157,9 @@ pushd %{_target_platform}
         -DBUILD_NOISE_TOOLS=ON \
         -DPROJECT_VERSION:STRING="%{name}-%{version}-%{release}" \
         -DRAWSPEED_ENABLE_LTO=ON \
+%if 0%{?fedora} >= 30
+        -DUSE_OPENMP=OFF \
+%endif
         %ifarch ppc64le
         -DUSE_OPENCL=OFF \
         %endif
