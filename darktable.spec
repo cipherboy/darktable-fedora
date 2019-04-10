@@ -1,6 +1,6 @@
 Name: darktable
 Version: 2.6.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 Summary: Utility to organize and develop raw images
 
@@ -210,6 +210,9 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/darktable
 %{_libexecdir}/darktable/tools/subr.sh
 
 %changelog
+* Wed Apr 10 2019 Richard Shaw <hobbes1069@gmail.com> - 2.6.1-2
+- Rebuild for OpenEXR 2.3.0.
+
 * Sun Mar 10 2019 Germano Massullo <germano.massullo@gmail.com> - 2.6.1-1
 - 2.6.1 release
 
