@@ -90,7 +90,7 @@ It also enables you to develop raw images and enhance them.
 
 %package tools-noise
 Summary:        The noise profiling tools to support new cameras
-Requires:       imagemagick
+Requires:       ImageMagick
 Requires:       gnuplot
 
 %description tools-noise
@@ -100,7 +100,7 @@ lighttable. it also enables you to develop raw images and enhance them.
 
 %package tools-basecurve
 Summary:        The basecurve tool from tools/basecurve/
-Requires:       imagemagick
+Requires:       ImageMagick
 Requires:       dcraw
 Requires:       exiftool
 
